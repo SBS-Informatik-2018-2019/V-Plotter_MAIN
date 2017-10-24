@@ -29,3 +29,4 @@ eine solch
 e Zimmerbelegung ausgeben. Zum Einstieg könntest du zunächst 
 annehmen, dass jede Schülerin jede Mitschülerin in einer ihrer beiden Listen 
 nennt. 
+https://www.bwinf.de/fileadmin/user_upload/BwInf/2017/36/Aufgabenblatt_36_BwInf/BWINF_36_Aufgaben.pdf

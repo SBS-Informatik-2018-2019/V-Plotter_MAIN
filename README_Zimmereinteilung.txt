@@ -1,0 +1,1 @@
+Aufgabe 1 (Zimmerbelegung) - Die Lösung gilt (nur) für Aufgebenteil 6, für andere Aufgabenteile muss zimmerbelegung.txt überschrieben werden.

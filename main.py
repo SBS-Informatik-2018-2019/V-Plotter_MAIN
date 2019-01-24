@@ -1,11 +1,13 @@
 import math;
 import collections;
  
-minSchritt = 4
-L = 100
+minSchritt = 1; """ muss 1 sein"""
+L = 100; """ abstand der motoren in schritten"""
 
-actMotorPosX = 
-actMotorPosY = 
+actMotorLaengeA = 20;
+actMotorLaengeB = 70;
+
+
  
 def getLaengeA(x, y):
     return math.sqrt(x*x+y*y)
@@ -26,8 +28,11 @@ def getPosY (a, b):
     return res
     
 def motorSetLaenge(a, b):
+    todoA = a - actMotorLaengeA
+    todoB = b - actMotorLaengeA
     
-
+    return
+    
 
 def macheGerade(x1, y1, x2, y2):
     a1 = getLaengeA(x1, y1)
@@ -39,6 +44,7 @@ def macheGerade(x1, y1, x2, y2):
     wegX = x2-x1
     wegY = y2-y1
     print("-->neue Gerade: from x,y=(" + str(x1) + "," + str(y1) + ") -> to x,y=(" + str(x2)+ "," + str(y2) + ")")
+    motorSetLaenge(a1, b1)
     schritte = 0
     if abs(wegY) < abs(wegX):
         schritte = round(wegX/minSchritt)
@@ -52,6 +58,7 @@ def macheGerade(x1, y1, x2, y2):
         rx = getPosX(a, b)
         ry = getPosY(a, b)
         print("   ->Pos " +str(i) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(rx) + "," + str(ry) + ")")
+        motorSetLaenge(a, b)
         continue
     x = x2
     y = y2
@@ -60,6 +67,7 @@ def macheGerade(x1, y1, x2, y2):
     rx = getPosX(a, b)
     ry = getPosY(a, b)   
     print("   ->Pos " +str(schritte) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(rx) + "," + str(ry) + ")")
+    motorSetLaenge(a, b)
     return
 
 
@@ -69,3 +77,4 @@ if __name__ == '__main__':
     macheGerade(10, 20, 40, 10) 
     
     
+

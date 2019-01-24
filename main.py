@@ -1,7 +1,8 @@
 import math;
 import collections;
  
-minSchritt = 1; """ muss 1 sein"""
+minSchritt = 1; """???muss 1 sein???"""
+""" umrechnung schritte - längen"""
 L = 100; """ abstand der motoren in schritten"""
 
 actMotorLaengeA = 20;

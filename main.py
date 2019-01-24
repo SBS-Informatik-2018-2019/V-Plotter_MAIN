@@ -1,8 +1,7 @@
 import math;
 import collections;
  
-minSchritt = 1; """???muss 1 sein???"""
-""" umrechnung schritte - längen"""
+minSchritt = 1; """ muss 1 sein?"""
 L = 100; """ abstand der motoren in schritten"""
 
 actMotorLaengeA = 20;
@@ -31,9 +30,8 @@ def getPosY (a, b):
 def motorSetLaenge(a, b):
     todoA = a - actMotorLaengeA
     todoB = b - actMotorLaengeA
-    
     return
-    
+
 
 def macheGerade(x1, y1, x2, y2):
     a1 = getLaengeA(x1, y1)
@@ -76,6 +74,6 @@ def macheGerade(x1, y1, x2, y2):
     
 if __name__ == '__main__':
     macheGerade(10, 20, 40, 10) 
-    
+    zth
     
 

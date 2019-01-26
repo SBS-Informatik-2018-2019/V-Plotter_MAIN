@@ -4,7 +4,7 @@ import time
 
  
 minSchritt = 3; """ ???muss 1 sein???"""
-L = 100; """ abstand der motoren in schritten"""
+L = 500; """ abstand der motoren in schritten"""
 
 actMotorLaengeA = 0; """ wird später als erster Punkt der Polyline gesezt"""
 actMotorLaengeB = 0; """ wird später als erster Punkt der Polyline gesezt"""
@@ -32,7 +32,7 @@ def getPosY (a, b):
 def motorSetLaenge(a, b):
     todoA = a - actMotorLaengeA
     todoB = b - actMotorLaengeA
-    time.sleep(0.1)
+    time.sleep(0.05)
     return
     
 
@@ -115,17 +115,29 @@ def machePolyline(file):
 	
 	return
 	
+
+
+def main():	
+	time.sleep(3)
+	file = input("*.svg File>>> ")
+	print("")
+	machePolyline(file)
+	print("")
+	weiter = input("weitere Datei (y/n)?>>> ")
+	if weiter == "y":
+		main();
+	return
+		
     
     
     
 if __name__ == '__main__':
-	for i in range(100):
-		print("")
+	print("")
 	print("--- SBS V Plotter ---")
 	time.sleep(1)
 	print("Mit dem SBS VPlotter können svg-polyline-Elemente von einem V-Plotter gezeichnet werden")
+	main()
+	print("auf Wiedersehen")
 	
-	time.sleep(3)
-	file = input("*.svg File>>> ")
-	print("")
-	machePolyline(file) 
+	
+	

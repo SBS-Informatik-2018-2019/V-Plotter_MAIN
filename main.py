@@ -119,13 +119,15 @@ def machePolyline(file):
 
 def main():
 	time.sleep(1)
-	print("für eine korrekte Funktion muss die svg-Datei im ersten <svg> Tag mit dem ")
+	print("i: Für eine korrekte Funktion muss die svg-Datei im ersten <svg> Tag mit dem Attribut xmlns='http://www.w3.org/2000/svg' vesehen sein. Im Parsevorgang werden nur die Punkte der ersten Polyline berücksichtigt.")
+	time.sleep(1)
+	print("i: Die aktuelle Position wird als Startpunkt der Polyline gesetzt. Achten sie darauf, dass die Strecke der einzelnen Linen niemals den Arbeitsbereich des Plotters verlässt! - viel Spass...
 	time.sleep(3)
-	file = input("*.svg File>>> ")
+	file = input(">>> *.svg File ")
 	print("")
 	machePolyline(file)
 	print("")
-	weiter = input("weitere Datei (y/n)?>>> ")
+	weiter = input(">>> weitere Datei (y/n)?:")
 	if weiter == "y":
 		main();
 	return

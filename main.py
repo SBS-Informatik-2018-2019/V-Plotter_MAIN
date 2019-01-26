@@ -117,7 +117,9 @@ def machePolyline(file):
 	
 
 
-def main():	
+def main():
+	time.sleep(1)
+	print("für eine korrekte Funktion muss die svg-Datei im ersten <svg> Tag mit dem ")
 	time.sleep(3)
 	file = input("*.svg File>>> ")
 	print("")

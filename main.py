@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import math
 import xml.etree.ElementTree as ElementTree
 import time

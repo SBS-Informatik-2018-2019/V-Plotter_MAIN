@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 from __future__ import print_function
-from __future__ import input_function
 import math
 import xml.etree.ElementTree as ElementTree
 import time
@@ -35,7 +34,7 @@ def getPosY (a, b):
 def motorSetLaenge(a, b):
     todoA = a - actMotorLaengeA
     todoB = b - actMotorLaengeA
-    time.sleep(0.05)
+    time.sleep(0.2)
     return
     
 
@@ -52,9 +51,9 @@ def macheGerade(x1, y1, x2, y2):
     motorSetLaenge(a1, b1)
     schritte = 0
     if abs(wegY) < abs(wegX):
-        schritte = round(abs(wegX)/minSchritt)
+        schritte = int(round(abs(wegX)/minSchritt))
     else:
-        schritte = round(abs(wegY)/minSchritt)
+        schritte = int(round(abs(wegY)/minSchritt))
     for i in range(schritte):
         x = (x1 + i*wegX/schritte)
         y = (y1 + i*wegY/schritte)
@@ -62,7 +61,7 @@ def macheGerade(x1, y1, x2, y2):
         b = round(getLaengeB(x, y))
         rx = getPosX(a, b)
         ry = getPosY(a, b)
-        print("   ->Pos " +str(i) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ")", end="\r")
+        print("   ->Pos " +str(i) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ")            ", end="\r")
         motorSetLaenge(a, b)
         continue
     x = x2
@@ -71,7 +70,7 @@ def macheGerade(x1, y1, x2, y2):
     b = round(getLaengeB(x, y))
     rx = getPosX(a, b)
     ry = getPosY(a, b)   
-    print("   ->Pos " +str(schritte) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ")", end="\r")
+    print("   ->Pos " +str(schritte) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + "): -fertig", end="\r")
     motorSetLaenge(a, b)
     return
 
@@ -115,22 +114,24 @@ def machePolyline(file):
 		x1 = x2
 		y1 = y2
 		continue
-	
 	return
 	
+
 
 
 def main():
 	time.sleep(1)
 	print("i: Für eine korrekte Funktion muss die svg-Datei im ersten <svg> Tag mit dem Attribut xmlns='http://www.w3.org/2000/svg' vesehen sein. Im Parsevorgang werden nur die Punkte der ersten Polyline berücksichtigt.")
 	time.sleep(1)
-	print("i: Die aktuelle Position wird als Startpunkt der Polyline gesetzt. Achten sie darauf, dass die Strecke der einzelnen Linen niemals den Arbeitsbereich des Plotters verlaesst! - viel Spass...
+	print("i: Die aktuelle Position wird als Startpunkt der Polyline gesetzt. Achten sie darauf, dass die Strecke der einzelnen Linen niemals den Arbeitsbereich des Plotters verlaesst! - viel Spass...")
 	time.sleep(3)
-	file = input(">>> *.svg File ")
+	file = raw_input(">>> *.svg File ")
 	print("")
 	machePolyline(file)
 	print("")
-	weiter = input(">>> weitere Datei (y/n)?:")
+	print("--->Polyline fertig...")
+	print("")
+	weiter = raw_input(">>> weitere Datei (y/n)?:")
 	if weiter == "y":
 		main();
 	return
@@ -145,6 +146,3 @@ if __name__ == '__main__':
 	print("Mit dem SBS VPlotter koennen svg-polyline-Elemente von einem V-Plotter gezeichnet werden")
 	main()
 	print("auf Wiedersehen")
-	
-	
-	

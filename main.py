@@ -6,8 +6,8 @@ import time
 minSchritt = 3; """ ???muss 1 sein???"""
 L = 500; """ abstand der motoren in schritten"""
 
-actMotorLaengeA = 0; """ wird später als erster Punkt der Polyline gesezt"""
-actMotorLaengeB = 0; """ wird später als erster Punkt der Polyline gesezt"""
+actMotorLaengeA = 0; """ wird spaeter als erster Punkt der Polyline gesezt"""
+actMotorLaengeB = 0; """ wird spaeter als erster Punkt der Polyline gesezt"""
 
 
  
@@ -121,7 +121,7 @@ def main():
 	time.sleep(1)
 	print("i: Für eine korrekte Funktion muss die svg-Datei im ersten <svg> Tag mit dem Attribut xmlns='http://www.w3.org/2000/svg' vesehen sein. Im Parsevorgang werden nur die Punkte der ersten Polyline berücksichtigt.")
 	time.sleep(1)
-	print("i: Die aktuelle Position wird als Startpunkt der Polyline gesetzt. Achten sie darauf, dass die Strecke der einzelnen Linen niemals den Arbeitsbereich des Plotters verlässt! - viel Spass...
+	print("i: Die aktuelle Position wird als Startpunkt der Polyline gesetzt. Achten sie darauf, dass die Strecke der einzelnen Linen niemals den Arbeitsbereich des Plotters verlaesst! - viel Spass...
 	time.sleep(3)
 	file = input(">>> *.svg File ")
 	print("")
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 	print("")
 	print("--- SBS V Plotter ---")
 	time.sleep(1)
-	print("Mit dem SBS VPlotter können svg-polyline-Elemente von einem V-Plotter gezeichnet werden")
+	print("Mit dem SBS VPlotter koennen svg-polyline-Elemente von einem V-Plotter gezeichnet werden")
 	main()
 	print("auf Wiedersehen")
 	

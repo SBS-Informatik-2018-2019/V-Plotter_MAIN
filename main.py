@@ -46,7 +46,7 @@ def macheGerade(x1, y1, x2, y2):
     wegB = b2-b1
     wegX = x2-x1
     wegY = y2-y1
-    print(" ->neue Gerade: from x,y=(" + str(x1) + "," + str(y1) + ") -> to x,y=(" + str(x2)+ "," + str(y2) + ")									", end="\n")
+    print(" ->neue Gerade: from x,y=(" + str(x1) + "," + str(y1) + ") -> to x,y=(" + str(x2)+ "," + str(y2) + ")									")
     motorSetLaenge(a1, b1)
     schritte = 0
     if abs(wegY) < abs(wegX):

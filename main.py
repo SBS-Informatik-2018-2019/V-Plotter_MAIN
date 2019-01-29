@@ -1,4 +1,6 @@
 #-*- coding: utf-8 -*-
+from __future__ import print_function
+from __future__ import input_function
 import math
 import xml.etree.ElementTree as ElementTree
 import time
@@ -60,7 +62,7 @@ def macheGerade(x1, y1, x2, y2):
         b = round(getLaengeB(x, y))
         rx = getPosX(a, b)
         ry = getPosY(a, b)
-        print("   ->Pos " +str(i) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ") \r")
+        print("   ->Pos " +str(i) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ")", end="\r")
         motorSetLaenge(a, b)
         continue
     x = x2
@@ -69,7 +71,7 @@ def macheGerade(x1, y1, x2, y2):
     b = round(getLaengeB(x, y))
     rx = getPosX(a, b)
     ry = getPosY(a, b)   
-    print("   ->Pos " +str(schritte) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ") \r")
+    print("   ->Pos " +str(schritte) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ")", end="\r")
     motorSetLaenge(a, b)
     return
 

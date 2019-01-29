@@ -77,7 +77,7 @@ def machePolyline(file):
 	svgRootElement = ElementTree.parse(file).getroot()
 	polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}polyline")
 	points = polylineElement.get('points')
-	print("->Polyline: points=(" + points + ")", end="\n")
+	print("->Polyline: points=(" + points + ")")
 	points = points + " "
 	points = points.lstrip()
 	index = points.index(',')

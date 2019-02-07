@@ -309,7 +309,12 @@ def aufEingabeWarten():
     no_input = True
     GPIO.output(READY, True)
     while(no_input):
-        time.sleep(0.005)
+        GPIO.output(READY, False)
+        time.sleep(0.2)
+        if (GPIO.input(START)==GPIO.HIGH):
+            no_input = False
+        time.sleep(0.2)
+        GPIO.output(READY, True)
         if (GPIO.input(START)==GPIO.HIGH):
             no_input = False
     GPIO.output(READY, False)

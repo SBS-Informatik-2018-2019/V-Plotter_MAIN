@@ -182,7 +182,7 @@ def motorSetLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
     todoA = int(a - (actMotorLaengeA))
-    todoB = - (int(b - (actMotorLaengeB))) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!geändert mal sehen ob dann nicht mehr gespiegelt
+    todoB =  (int(b - (actMotorLaengeB))) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!geändert mal sehen ob dann nicht mehr gespiegelt
     actMotorLaengeA += todoA
     actMotorLaengeB += todoB
     #print("????actML: a/b"+str(actMotorLaengeA)+";"+str(actMotorLaengeB))

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" style="border: 8px solid powderblue;margin: 50px;" width="2030" >	
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 8px solid powderblue;margin: 50px;" width="2030" height="2200">	
 	<circle cx="0" cy="0" r="35" stroke="black" stroke-width="4" fill="grey" />
 	<circle cx="2030" cy="0" r="35" stroke="black" stroke-width="4" fill="grey" />
 	<text x="100" y="100" style="font-size: 70;stroke: black;">Informatik LK Q4</text>

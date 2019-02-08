@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 2px solid powderblue;margin: 50px;" width="2030" >	
+	<circle cx="0" cy="0" r="30" stroke="black" stroke-width="1" fill="grey" />
+	<circle cx="2030" cy="0" r="30" stroke="black" stroke-width="1" fill="grey" />
+	<text x="930" y="30">Informatik LK Q4</text>
+	<rect x="800" y="800" width="430" height="304" stroke="black" stroke-width="1" fill="white"/>
+	<polyline 
+	points="
+		820,820
+		1230,1094 		
+		
+		
+		"
+	stroke="#006600"
+	stroke-width="2"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	fill="none"
+	/>
+	
+</svg>

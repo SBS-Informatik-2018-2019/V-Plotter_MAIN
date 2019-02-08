@@ -14,7 +14,7 @@ FILE="file.svg" #name der standart datei
 transformator = 1 #
 
 
-Tmin = 0.001 #zum langsamer machen der motoeren, mindestens 0.001
+Tmin = 0.005 #zum langsamer machen der motoeren, mindestens 0.001
 A=21 #motor A pins
 B=20
 C=16

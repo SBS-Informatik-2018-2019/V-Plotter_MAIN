@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 
 #####################################################
 minSchritt = 1; # auflösung der greraden
-L = 2000 # abstand der motoren in schritten
+L = 2030 # abstand der motoren in schritten , auch in svg ändern
 FILE="file.svg" #name der standart datei
 transformator = 1 #
 

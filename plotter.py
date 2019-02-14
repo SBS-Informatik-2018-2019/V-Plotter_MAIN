@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ElementTree
 import time
 import threading
 from time import sleep
-import RPi.GPIO as GPIO       
+import RPi.GPIO as GPIO
 
 #####################################################
 minSchritt = 1; # auflösung der greraden

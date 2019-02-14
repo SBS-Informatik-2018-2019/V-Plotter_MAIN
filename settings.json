@@ -1,0 +1,30 @@
+{
+    
+    "settings":{ 
+        //
+        "minSchritt": 1,
+        "L": 2030,
+        "FILE": "file.svg",
+        "TMIN": 0.005,
+        //motor A pins
+        "A": 21,
+        "B": 20,
+        "C": 16,
+        "D": 12,
+        //motor B pins
+        "E": 8,
+        "F": 25,
+        "G": 24,
+        "H": 23,
+        //UI pins
+        "READY": 2 ,
+        "ACTIVE": 3,
+        "START": 4,
+        "STOP": 17,
+    },
+    //do not edit
+    "data":{ 
+        "minSchritt": 1
+    }
+
+}

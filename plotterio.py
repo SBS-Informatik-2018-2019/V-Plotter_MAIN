@@ -96,7 +96,21 @@ def output(pin, value):
 
 @staticmethod
 def input(pin):
-    if (GPIO.input(STOP) == GPIO.HIGH):
+    if (GPIO.input(pin) == GPIO.HIGH):
         return 1
     else:
         return 0
+
+@staticmethod
+def aufOKWarten():
+    sleep(2.5)
+    print("mit Taste -OK- bestätigen")
+    no_input = True
+    output(getREADY(), True)
+    while(no_input):
+        sleep(0.001)
+        if (input(getSTART())==1):
+            no_input = False
+    output(getREADY(), False)
+    print(">>>-OK-")
+    return

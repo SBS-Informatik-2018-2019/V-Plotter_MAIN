@@ -16,7 +16,10 @@ def initLaenge(a, b):
     actMotorLaengeB = b
 
 def getActMotorLaengeA():
-    recvx mlmnlmxcvndsnvcn
+    return actMotorLaengeA
+
+def getActMotorLaengeB():
+    return actMotorLaengeB
 
 def setLaenge(a, b):
     global actMotorLaengeA

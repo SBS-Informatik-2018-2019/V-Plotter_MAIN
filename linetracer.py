@@ -10,27 +10,22 @@ startPosX = 0 # do not edit startpunkt
 startPosY = 0 # do not edit startpunkt
 #END VARIABLES####################################
 
-@staticmethod
 def getLaengeA(x, y):
     return math.sqrt((x*x)+(y*y))
     
-@staticmethod
 def getLaengeB(x, y):
     return math.sqrt(((L-x)*(L-x))+(y*y))
     
-@staticmethod
 def beta (a, b):
     return math.acos (-(b * b - a * a - L * L) / (2 * a * L))
     
-@staticmethod
 def getPosX (a, b):
     return math.cos(beta(a, b))*a
     
-@staticmethod
 def getPosY (a, b):
     return math.sin(beta(a, b))*a
 
-@staticmethod
+
 def macheGerade(x1, y1, x2, y2):
     global startPosX
     global startPosY
@@ -66,6 +61,6 @@ def macheGerade(x1, y1, x2, y2):
     y = y2
     a = round(getLaengeA(x, y))
     b = round(getLaengeB(x, y))
-    if(motorSetLaenge(a, b)==1):
+    if(MOTOR.setLaenge(a, b)==1):
         return 1
     return 0

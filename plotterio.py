@@ -100,7 +100,6 @@ def aufOKWarten():
     print(">>>-OK-")
     return
 
-@staticmethod
 def cleanup():
     GPIO.cleanup()
     return

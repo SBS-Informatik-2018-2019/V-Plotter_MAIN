@@ -43,15 +43,15 @@ class motor (threading.Thread):
         self.time=Tmin*Tmult
 
         if inv == True:
-            self.A=E
-            self.B=F
-            self.C=G
-            self.D=H
+            self.A=IO.getE()
+            self.B=IO.getF()
+            self.C=IO.getG()
+            self.D=IO.getH()
         else:
-            self.A=A
-            self.B=B
-            self.C=C
-            self.D=D
+            self.A=IO.getA()
+            self.B=IO.getB()
+            self.C=IO.getC()
+            self.D=IO.getD()
         IO.output(self.A, False)
         IO.output(self.B, False)
         IO.output(self.C, False)

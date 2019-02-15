@@ -24,8 +24,8 @@ def getActMotorLaengeB():
 def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
-    todoA = int(round(a - (actMotorLaengeA))
-    todoB = int(round(b - (actMotorLaengeB))
+    todoA = int(round(a - actMotorLaengeA))
+    todoB = int(round(b - actMotorLaengeB))
     actMotorLaengeA += todoA
     actMotorLaengeB += todoB
     da=1.0

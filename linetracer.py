@@ -42,7 +42,7 @@ def macheGerade(x1, y1, x2, y2):
     wegX = x2-x1
     wegY = y2-y1
    
-    if(MOTOR.setLaenge(a1, b1)==1):
+    if(MOTOR.setLaenge(a1, b1)=="stop"):
         return 1
     schritte = 0
     if abs(wegY) < abs(wegX):
@@ -61,6 +61,6 @@ def macheGerade(x1, y1, x2, y2):
     y = y2
     a = round(getLaengeA(x, y))
     b = round(getLaengeB(x, y))
-    if(MOTOR.setLaenge(a, b)==1):
-        return 1
+    if(MOTOR.setLaenge(a, b)=="stop"):
+        return "stop"
     return 0

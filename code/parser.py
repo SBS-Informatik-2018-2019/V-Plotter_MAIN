@@ -1,9 +1,10 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
 import linetracer as LT
+import modulefinder as MOTOR
 
 #VARIABLES#######################################
-FILE="file_scharf.svg" #name der standart datei
+FILE="file.svg" #name der standart datei
 #END VARIABLES####################################
 
 def readSvg():

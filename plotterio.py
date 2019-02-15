@@ -83,9 +83,9 @@ def output(pin, value):
 
 def input(pin):
     if (GPIO.input(pin) == GPIO.HIGH):
-        return 1
+        return True
     else:
-        return 0
+        return False
 
 def aufOKWarten():
     sleep(2.5)
@@ -94,7 +94,7 @@ def aufOKWarten():
     output(getREADY(), True)
     while(no_input):
         sleep(0.001)
-        if (input(getSTART())==1):
+        if (input(getSTART())):
             no_input = False
     output(getREADY(), False)
     print(">>>-OK-")

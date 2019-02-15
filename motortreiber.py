@@ -12,8 +12,8 @@ actMotorLaengeB = 0 # do not edit actML
 def initLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
-    actMotorLaengeA = a
-    actMotorLaengeB = b
+    actMotorLaengeA = round(a)
+    actMotorLaengeB = round(b)
 
 def getActMotorLaengeA():
     return actMotorLaengeA
@@ -24,8 +24,8 @@ def getActMotorLaengeB():
 def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
-    todoA = int(a - (actMotorLaengeA))
-    todoB =  int(b - (actMotorLaengeB)) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!gespiegelt???
+    todoA = int(round(a - (actMotorLaengeA))
+    todoB = int(round(b - (actMotorLaengeB))
     actMotorLaengeA += todoA
     actMotorLaengeB += todoB
     da=1.0

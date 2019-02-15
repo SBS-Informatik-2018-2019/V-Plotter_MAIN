@@ -106,7 +106,7 @@ def main():
     aufEingabeWarten()
     print("")
     geheStartPos()
-    main();
+    main()
     return
         
     

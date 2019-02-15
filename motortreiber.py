@@ -1,32 +1,13 @@
 #-*- coding: utf-8 -*-
 from time import sleep
 import threading
-import RPi.GPIO as GPIO
+import plotterio as IO
 
+#VARIABLES#######################################
 Tmin = 0.005 #zum langsamer machen der motoeren, mindestens 0.001
-A=21 #motor A pins
-B=20
-C=16
-D=12
-E=8  #motor B pins
-F=25
-G=24
-H=23
+#END VARIABLES####################################
 
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(A,GPIO.OUT)
-GPIO.setup(B,GPIO.OUT)
-GPIO.setup(C,GPIO.OUT)
-GPIO.setup(D,GPIO.OUT)
-GPIO.setup(E,GPIO.OUT)
-GPIO.setup(F,GPIO.OUT)
-GPIO.setup(G,GPIO.OUT)
-GPIO.setup(H,GPIO.OUT)
-GPIO.setwarnings(True)
-
-def motorSetLaenge(a, b):
+def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
     todoA = int(a - (actMotorLaengeA))
@@ -49,20 +30,9 @@ def motorSetLaenge(a, b):
     B.start()
     A.join()
     B.join()
-    if(GPIO.input(STOP)==GPIO.HIGH):
-        return 1
+    if(IO.input(IO.getSTOP())):
+        return "stop"
     return 0
-
-
-
-
-
-
-
-
-
-
-
 
 
 class motor (threading.Thread):
@@ -82,60 +52,60 @@ class motor (threading.Thread):
             self.B=B
             self.C=C
             self.D=D
-        GPIO.output(self.A, False)
-        GPIO.output(self.B, False)
-        GPIO.output(self.C, False)
-        GPIO.output(self.D, False)
+        IO.output(self.A, False)
+        IO.output(self.B, False)
+        IO.output(self.C, False)
+        IO.output(self.D, False)
 
     def run(self):
 
         def Step1():
-            GPIO.output(self.D, True)
+            IO.output(self.D, True)
             sleep (self.time)
-            GPIO.output(self.D, False)
+            IO.output(self.D, False)
 
         def Step2():
-            GPIO.output(self.D, True)
-            GPIO.output(self.C, True)
+            IO.output(self.D, True)
+            IO.output(self.C, True)
             sleep (self.time)
-            GPIO.output(self.D, False)
-            GPIO.output(self.C, False)
+            IO.output(self.D, False)
+            IO.output(self.C, False)
 
         def Step3():
-            GPIO.output(self.C, True)
+            IO.output(self.C, True)
             sleep (self.time)
-            GPIO.output(self.C, False)
+            IO.output(self.C, False)
 
         def Step4():
-            GPIO.output(self.B, True)
-            GPIO.output(self.C, True)
+            IO.output(self.B, True)
+            IO.output(self.C, True)
             sleep (self.time)
-            GPIO.output(self.B, False)
-            GPIO.output(self.C, False)
+            IO.output(self.B, False)
+            IO.output(self.C, False)
 
         def Step5():
-            GPIO.output(self.B, True)
+            IO.output(self.B, True)
             sleep (self.time)
-            GPIO.output(self.B, False)
+            IO.output(self.B, False)
 
         def Step6():
-            GPIO.output(self.A, True)
-            GPIO.output(self.B, True)
+            IO.output(self.A, True)
+            IO.output(self.B, True)
             sleep (self.time)
-            GPIO.output(self.A, False)
-            GPIO.output(self.B, False)
+            IO.output(self.A, False)
+            IO.output(self.B, False)
 
         def Step7():
-            GPIO.output(self.A, True)
+            IO.output(self.A, True)
             sleep (self.time)
-            GPIO.output(self.A, False)
+            IO.output(self.A, False)
 
         def Step8():
-            GPIO.output(self.D, True)
-            GPIO.output(self.A, True)
+            IO.output(self.D, True)
+            IO.output(self.A, True)
             sleep (self.time)
-            GPIO.output(self.D, False)
-            GPIO.output(self.A, False)
+            IO.output(self.D, False)
+            IO.output(self.A, False)
 
 
         if self.steps==0:

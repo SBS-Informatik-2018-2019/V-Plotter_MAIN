@@ -66,18 +66,6 @@ def machePolyline(file):
         continue
     return
     
-def aufEingabeWarten():
-    time.sleep(2.5)
-    print("mit Taste -OK- bestätigen")
-    no_input = True
-    GPIO.output(READY, True)
-    while(no_input):
-        time.sleep(0.001)
-        if (GPIO.input(START)==GPIO.HIGH):
-            no_input = False
-    GPIO.output(READY, False)
-    print(">>>-OK-")
-    return
 
 def geheStartPos():
     global startPosX

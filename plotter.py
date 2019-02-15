@@ -2,6 +2,7 @@
 
 import xml.etree.ElementTree as ElementTree
 import time
+import plotterio as IO
 
 
 
@@ -66,18 +67,6 @@ def machePolyline(file):
         continue
     return
     
-def aufEingabeWarten():
-    time.sleep(2.5)
-    print("mit Taste -OK- bestätigen")
-    no_input = True
-    GPIO.output(READY, True)
-    while(no_input):
-        time.sleep(0.001)
-        if (GPIO.input(START)==GPIO.HIGH):
-            no_input = False
-    GPIO.output(READY, False)
-    print(">>>-OK-")
-    return
 
 def geheStartPos():
     global startPosX
@@ -119,9 +108,9 @@ if __name__ == '__main__':
         aufEingabeWarten()
         main()
     except KeyboardInterrupt:
-        GPIO.output(ACTIVE, False)
-        GPIO.output(READY, False)
-        GPIO.cleanup()
+        IO.output(IO.getACTIVE(), False)
+        IO.output(IO.getREADY(), False)
+        IO.cleanup()
         print(" ")
         print("EXIT via KeyboardInterrupt")
     

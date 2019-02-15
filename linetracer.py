@@ -6,9 +6,6 @@ import motortreiber as MOTOR
 #VARIABLES#######################################
 minSchritt = 1 # auflösung der greraden
 L = 2030 # abstand der motoren in schritten
-FILE = "file_scharf.svg" #name der datei
-
-
 startPosX = 0 # do not edit startpunkt
 startPosY = 0 # do not edit startpunkt
 actMotorLaengeA = 0 # do not edit actML

@@ -1,135 +1,16 @@
 #-*- coding: utf-8 -*-
-from __future__ import print_function
-import math
+
 import xml.etree.ElementTree as ElementTree
 import time
-import threading
-import RPi.GPIO as GPIO
 
-#####################################################
-minSchritt = 1 # auflösung der greraden
-L = 2030 # abstand der motoren in schritten , auch in svg ändern
+
+
+
+#VARIABLES#######################################
 FILE="file_scharf.svg" #name der standart datei
-transformator = 1 #
-READY=2 #UI pins
-ACTIVE=3
-START=4
-STOP=17
-startPosX = 0 # do not edit startpunkt
-startPosY = 0 # do not edit startpunkt
-actMotorLaengeA = 0 # do not edit startpunkt
-actMotorLaengeB = 0 # do not edit startpunkt
-#######################################################
+#END VARIABLES####################################
 
 
-
-
-GPIO.setup(ACTIVE,GPIO.OUT)
-GPIO.setup(READY,GPIO.OUT)
-GPIO.setup(STOP,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(START,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
-
-GPIO.output(A, False)
-GPIO.output(B, False)
-GPIO.output(C, False)
-GPIO.output(D, False)
-GPIO.output(E, False)
-GPIO.output(F, False)
-GPIO.output(G, False)
-GPIO.output(H, False)
-
- 
-def getLaengeA(x, y):
-    return math.sqrt((x*x)+(y*y))
- 
-def getLaengeB(x, y):
-    return math.sqrt(((L-x)*(L-x))+(y*y))
-    
-def beta (a, b):
-    res = math.acos (-(b * b - a * a - L * L) / (2 * a * L))
-    return res;
-    
-def getPosX (a, b):
-    res = math.cos(beta(a, b))*a
-    return res
-    
-def getPosY (a, b):
-    res = math.sin(beta(a, b))*a
-    return res
-    
-def motorSetLaenge(a, b):
-    global actMotorLaengeA
-    global actMotorLaengeB
-    todoA = int(a - (actMotorLaengeA))
-    todoB =  int(b - (actMotorLaengeB)) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!geändert mal sehen ob dann nicht mehr gespiegelt
-    actMotorLaengeA += todoA
-    actMotorLaengeB += todoB
-    #print("????actML: a/b"+str(actMotorLaengeA)+";"+str(actMotorLaengeB))
-    #print("????todotML: a/b"+str(todoA)+";"+str(todoB))
-    da=1.0
-    db=1.0
-    fa=float(abs(todoA))
-    fb=float(abs(todoB))
-    if (fa==0)| (fb==0):
-        pass
-    elif fa > fb:
-        db=fa/fb
-    elif fa < fb:
-        da=fb/fa
-    A=motor(todoA,da,False)
-    B=motor(todoB,db,True)
-    A.start()
-    B.start()
-    A.join()
-    B.join()
-    if(GPIO.input(STOP)==GPIO.HIGH):
-        return 1
-    return 0
-    
-
-def macheGerade(x1, y1, x2, y2):
-    global startPosX
-    global startPosY
-    global actMotorLaengeA
-    global actMotorLaengeB
-    a1 = getLaengeA(x1, y1)
-    b1 = getLaengeB(x1, y1)
-    a2 = getLaengeA(x2, y2)
-    b2 = getLaengeB(x2, y2)
-    wegA = a2-a1
-    wegB = b2-b1
-    wegX = x2-x1
-    wegY = y2-y1
-    #print(" ->neue Gerade: from x,y=(" + str(x1) + "," + str(y1) + ") -> to x,y=(" + str(x2)+ "," + str(y2) + ")                                    ")
-    if(motorSetLaenge(a1, b1)==1):
-        return 1
-    schritte = 0
-    if abs(wegY) < abs(wegX):
-        schritte = int(round(abs(wegX)/minSchritt))
-    else:
-        schritte = int(round(abs(wegY)/minSchritt))
-    for i in range(schritte):
-        x = (x1 + i*wegX/schritte)
-        y = (y1 + i*wegY/schritte)
-        a = round(getLaengeA(x, y))
-        b = round(getLaengeB(x, y))
-        rx = getPosX(a, b)
-        ry = getPosY(a, b)
-        #print("   ->Pos " +str(i) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + ")")
-        if(motorSetLaenge(a, b)==1):
-            return 1
-        continue
-    x = x2
-    y = y2
-    a = round(getLaengeA(x, y))
-    b = round(getLaengeB(x, y))
-    rx = getPosX(a, b)
-    ry = getPosY(a, b)   
-    #print("   ->Pos " +str(schritte) + "/" + str(schritte) + ": a,b=[" + str(a) + "," + str(b)+"] x,y~(" + str(round(x)) + "," + str(round(y)) + ") rx,ry=(" + str(round(rx)) + "," + str(round(ry)) + "): -fertig")
-    if(motorSetLaenge(a, b)==1):
-        return 1
-    return 0
 
 def machePolyline(file):
     global startPosX

@@ -5,13 +5,20 @@ import modulefinder as MOTOR
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
+pointsX = [0,0] # do not edit points
+pointsY = [0,0] # do not edit points
 #END VARIABLES####################################
 
-def readSvg():
+def svgLesen():
     svgRootElement = ET.parse(FILE).getroot()
     polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}path")
     string = polylineElement.get('d')
     print("-> PATH: " + string)
+
+
+def scalieren():
+    return
+
 
 
 def machePolyline(file):
@@ -27,16 +34,12 @@ def machePolyline(file):
     points = points.lstrip()
     index = points.index(',')
     x1 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if(x1<=0):
-        x1 = 1
-    if(x1>LT.L):
-        x1= LT.L
+
     points = points[index+1:len(points)]
     points = points.lstrip()
     index = points.index(' ')
     y1 = float(points[0:index])
-    if(y1<=0):
-        y1 = 1
+
     points = points[index+1:len(points)]
     points = points.lstrip()
     startPosX = x1

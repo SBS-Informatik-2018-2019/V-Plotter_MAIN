@@ -39,19 +39,6 @@ GPIO.setwarnings(True)
 GPIO.setup(STOP,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(START,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-@staticmethod
-def output(pin, value):
-    GPIO.output(pin, value)
-    return
-
-@staticmethod
-def input(pin):
-    if (GPIO.input(STOP) == GPIO.HIGH):
-        return 1
-    else:
-        return 0
-
-
 # getters & setters
 @staticmethod
 def getREADY():
@@ -100,5 +87,16 @@ def getG():
 @staticmethod
 def getH():
     return H 
+#END getters & setters
 
+@staticmethod
+def output(pin, value):
+    GPIO.output(pin, value)
+    return
 
+@staticmethod
+def input(pin):
+    if (GPIO.input(STOP) == GPIO.HIGH):
+        return 1
+    else:
+        return 0

@@ -40,68 +40,53 @@ GPIO.setup(STOP,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(START,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # getters & setters
-@staticmethod
 def getREADY():
     return READY
 
-@staticmethod
 def getACTIVE():
     return ACTIVE
 
-@staticmethod
 def getSTART():
     return START
 
-@staticmethod
 def getSTOP():
     return STOP
 
-@staticmethod
 def getA():
     return A
 
-@staticmethod
 def getB():
     return B
 
-@staticmethod
 def getC():
     return C
 
-@staticmethod
 def getD():
     return D
 
-@staticmethod
 def getE():
     return E
 
-@staticmethod
 def getF():
     return F
 
-@staticmethod
 def getG():
     return G
 
-@staticmethod
 def getH():
     return H 
 #END getters & setters
 
-@staticmethod
 def output(pin, value):
     GPIO.output(pin, value)
     return
 
-@staticmethod
 def input(pin):
     if (GPIO.input(pin) == GPIO.HIGH):
         return 1
     else:
         return 0
 
-@staticmethod
 def aufOKWarten():
     sleep(2.5)
     print("mit Taste -OK- bestätigen")

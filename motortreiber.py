@@ -9,6 +9,15 @@ actMotorLaengeA = 0 # do not edit actML
 actMotorLaengeB = 0 # do not edit actML
 #END VARIABLES####################################
 
+def initLaenge(a, b):
+    global actMotorLaengeA
+    global actMotorLaengeB
+    actMotorLaengeA = a
+    actMotorLaengeB = b
+
+def getActMotorLaengeA():
+    recvx mlmnlmxcvndsnvcn
+
 def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB

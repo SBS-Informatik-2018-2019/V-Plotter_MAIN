@@ -10,6 +10,7 @@ def readSvg():
     svgRootElement = ET.parse(FILE).getroot()
     polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}path")
     string = polylineElement.get('d')
+    print("-> PATH: " + string)
 
 
 def machePolyline(file):
@@ -27,8 +28,8 @@ def machePolyline(file):
     x1 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if(x1<=0):
         x1 = 1
-    if(x1>linetracer.L):
-        x1= L
+    if(x1>LT.L):
+        x1= LT.L
     points = points[index+1:len(points)]
     points = points.lstrip()
     index = points.index(' ')
@@ -59,7 +60,7 @@ def machePolyline(file):
             y2 = 1
         points = points[index+1:len(points)]
         points = points.lstrip()
-        if(macheGerade(x1, y1, x2, y2)==1):
+        if(LT.macheGerade(x1, y1, x2, y2)==1):
             return 1
         x1 = x2
         y1 = y2

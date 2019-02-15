@@ -2,6 +2,7 @@
 
 import xml.etree.ElementTree as ElementTree
 import time
+import plotterio as IO
 
 
 
@@ -107,9 +108,9 @@ if __name__ == '__main__':
         aufEingabeWarten()
         main()
     except KeyboardInterrupt:
-        GPIO.output(ACTIVE, False)
-        GPIO.output(READY, False)
-        GPIO.cleanup()
+        IO.output(IO.getACTIVE(), False)
+        IO.output(IO.getREADY(), False)
+        IO.cleanup()
         print(" ")
         print("EXIT via KeyboardInterrupt")
     

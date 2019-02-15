@@ -5,8 +5,8 @@ import modulefinder as MOTOR
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
-pointsX = [0,0] # do not edit points
-pointsY = [0,0] # do not edit points
+punkteX = [0,0] # do not edit points
+punkteY = [0,0] # do not edit points
 #END VARIABLES####################################
 
 def svgLesen():
@@ -14,7 +14,12 @@ def svgLesen():
     polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}path")
     string = polylineElement.get('d')
     print("-> PATH: " + string)
+    return
 
+def punkteSchreiben():
+    global punkteX
+    global punkteY
+    return
 
 def scalieren():
     return

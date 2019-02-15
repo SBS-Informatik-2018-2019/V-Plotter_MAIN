@@ -1,0 +1,1 @@
+start putty.exe -ssh 192.168.172.210 -l pi -pw raspberry

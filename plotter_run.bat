@@ -1,1 +1,3 @@
-start putty.exe -ssh 192.168.172.210 -l pi -pw raspberry
+
+plink.exe -C -pw 123456789 pi@192.168.178.210 <cmd.txt
+echo Hallo

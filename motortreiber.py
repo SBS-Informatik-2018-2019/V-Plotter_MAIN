@@ -5,13 +5,15 @@ import plotterio as IO
 
 #VARIABLES#######################################
 Tmin = 0.005 #zum langsamer machen der motoeren, mindestens 0.001
+actMotorLaengeA = 0 # do not edit actML
+actMotorLaengeB = 0 # do not edit actML
 #END VARIABLES####################################
 
 def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
     todoA = int(a - (actMotorLaengeA))
-    todoB =  int(b - (actMotorLaengeB)) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!geändert mal sehen ob dann nicht mehr gespiegelt
+    todoB =  int(b - (actMotorLaengeB)) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!gespiegelt???
     actMotorLaengeA += todoA
     actMotorLaengeB += todoB
     da=1.0

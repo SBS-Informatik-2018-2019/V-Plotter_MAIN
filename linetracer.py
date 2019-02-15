@@ -8,10 +8,6 @@ minSchritt = 1 # auflösung der greraden
 L = 2030 # abstand der motoren in schritten
 startPosX = 0 # do not edit startpunkt
 startPosY = 0 # do not edit startpunkt
-actMotorLaengeA = 0 # do not edit actML
-actMotorLaengeB = 0 # do not edit actML
-actPosX = 0 # do not edit actPos
-actPosY = 0 # do not edit actPos
 #END VARIABLES####################################
 
 @staticmethod
@@ -40,6 +36,8 @@ def macheGerade(x1, y1, x2, y2):
     global startPosY
     global actMotorLaengeA
     global actMotorLaengeB
+    global actPosX
+    global actPosY
     a1 = getLaengeA(x1, y1)
     b1 = getLaengeB(x1, y1)
     a2 = getLaengeA(x2, y2)

@@ -1,10 +1,15 @@
+#-*- coding: utf-8 -*-
+import xml.etree.ElementTree as ET
+import linetracer as LT
 
+#VARIABLES#######################################
+FILE="file_scharf.svg" #name der standart datei
+#END VARIABLES####################################
 
-
-
-
-
-
+def readSvg():
+    svgRootElement = ET.parse(FILE).getroot()
+    polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}path")
+    string = polylineElement.get('d')
 
 
 def machePolyline(file):
@@ -12,7 +17,7 @@ def machePolyline(file):
     global startPosY
     global actMotorLaengeA
     global actMotorLaengeB
-    svgRootElement = ElementTree.parse(file).getroot()
+    svgRootElement = ET.parse(file).getroot()
     polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}polyline")
     points = polylineElement.get('points')
     #print("->Polyline: points=(" + points + ")")
@@ -22,7 +27,7 @@ def machePolyline(file):
     x1 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     if(x1<=0):
         x1 = 1
-    if(x1>L):
+    if(x1>linetracer.L):
         x1= L
     points = points[index+1:len(points)]
     points = points.lstrip()

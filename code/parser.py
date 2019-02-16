@@ -4,6 +4,8 @@ import linetracer as LT
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
+STARTX = 800
+STARTY = 800
 punkteX = [0,0] # do not edit points
 punkteY = [0,0] # do not edit points
 #END VARIABLES####################################
@@ -40,10 +42,6 @@ def scalieren():
 
 
 def machePolyline(file):
-    global startPosX
-    global startPosY
-    global actMotorLaengeA
-    global actMotorLaengeB
     svgRootElement = ET.parse(file).getroot()
     polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}polyline")
     points = polylineElement.get('points')
@@ -60,14 +58,7 @@ def machePolyline(file):
 
     points = points[index+1:len(points)]
     points = points.lstrip()
-    startPosX = x1
-    startPosY = y1
-    #print("~~~~~~~~~~~STARTX="+str(startPosX))
-    #print("~~~~~~~~~~~STARTY="+str(startPosY))
-    actMotorLaengeA = getLaengeA(startPosX, startPosY)
-    actMotorLaengeB = getLaengeB(startPosX, startPosY)
-    #print("~~~~~~~~~~~STARTMLA="+str(actMotorLaengeA))
-    #print("~~~~~~~~~~~STARTMLB="+str(actMotorLaengeB))
+    LT.initPosition(STARTX,STARTY)
     while len(points) != 0:
         points = points.lstrip()
         index = points.index(',')
@@ -82,9 +73,12 @@ def machePolyline(file):
             y2 = 1
         points = points[index+1:len(points)]
         points = points.lstrip()
-        if(LT.macheGerade(x1, y1, x2, y2)==1):
-            return 1
+        if(LT.macheGerade(x2, y2)=="stop"):
+            return "stop"
         x1 = x2
         y1 = y2
         continue
+    return
+
+def parse(file):
     return

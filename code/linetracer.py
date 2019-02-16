@@ -10,6 +10,11 @@ startPosX = 0 # do not edit startpunkt
 startPosY = 0 # do not edit startpunkt
 #END VARIABLES####################################
 
+#getters & setters
+def getL():
+    return L
+#END getters & setters
+
 def getLaengeA(x, y):
     return math.sqrt((x*x)+(y*y))
 
@@ -24,6 +29,12 @@ def getPosX (a, b):
 
 def getPosY (a, b):
     return math.sin(beta(a, b))*a
+
+def initPosition(initX, initY):
+    a = getLaengeA(initX, initY)
+    b = getLaengeB(initX, initY)
+    MOTOR.initLaenge(a, b)
+    return
 
 def macheGerade(toX, toY):
     fromA = MOTOR.getActMotorLaengeA()

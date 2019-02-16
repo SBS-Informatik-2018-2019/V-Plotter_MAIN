@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
 import linetracer as LT
-import modulefinder as MOTOR
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei

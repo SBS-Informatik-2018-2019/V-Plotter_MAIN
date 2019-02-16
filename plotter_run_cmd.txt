@@ -1,3 +1,0 @@
-cd /home/pi/plotter/
-ls
-python plotter_main.py

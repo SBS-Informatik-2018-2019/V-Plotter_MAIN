@@ -1,19 +1,18 @@
 @echo off
+title V-Plotter
 cls
 echo -V-Plotter------------------------
 echo -Mit dem Raspberry verbinden...
-echo -Verbindung testen
-timeout /T 2
-ping /n 1 192.168.178.210
-timeout /T 2
+title V-Plotter -Verbindung testen
+ping 192.168.178.210
+timeout /T 3
 cls
 echo -Datei "file.svg" wird uebertragen
-timeout /T 2
 psftp.exe -b plotter_trans_cmd.txt -pw raspberry pi@192.168.178.210
-timeout /T 2
+title V-Plotter -gestarted
+START putty.exe -ssh pi@192.168.178.210 -pw raspberry
+timeout /T 20
 cls
-echo -Plotter wird gestartet
-plink.exe -m plotter_run_cmd.txt -pw raspberry pi@192.168.178.210
-echo -Plotter beendet
-pause
+title V-Plotter -cleanup
+timeout /T 3
 exit

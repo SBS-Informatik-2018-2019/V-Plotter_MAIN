@@ -3,6 +3,7 @@ from time import sleep
 import parser as PARSER
 
 if __name__ == "__main__":
+    print("auf Antwort warten...")
     print("-V---P-l-o-t-t-e-r-----------------------------------------------")
     sleep(1)
     print("Bitte den Anweisungen hier folgen!")

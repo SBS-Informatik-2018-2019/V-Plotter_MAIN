@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
-import linetracer as LT
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
@@ -8,6 +7,8 @@ STARTX = 800
 STARTY = 800
 punkteX = [0,0] # do not edit points
 punkteY = [0,0] # do not edit points
+
+nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 #END VARIABLES####################################
 
 # oder mit liste
@@ -26,9 +27,14 @@ print(liste.pop())       # 2; [8,7,6,5,4,4,3]
 
 def svgLesen():
     svgRootElement = ET.parse(FILE).getroot()
-    polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}path")
-    string = polylineElement.get('d')
-    print("-> PATH: " + string)
+    if (svgRootElement.find("svgNs:path", nameSpace) != None):
+        pathElement = svgRootElement.find("svgNs:path", nameSpace)
+        string = pathElement.get('d')
+        print("-> PATH: " + string)
+    elif (svgRootElement.find("svgNs:polyline", nameSpace) != None):
+        polylineElement = svgRootElement.find("svgNs:polyline", nameSpace)
+        points = polylineElement.get('points')
+        print("-> Polyline: " + points)
     return
 
 def punkteSchreiben():
@@ -58,7 +64,7 @@ def machePolyline(file):
 
     points = points[index+1:len(points)]
     points = points.lstrip()
-    LT.initPosition(STARTX,STARTY)
+    #LT.initPosition(STARTX,STARTY)
     while len(points) != 0:
         points = points.lstrip()
         index = points.index(',')
@@ -73,12 +79,13 @@ def machePolyline(file):
             y2 = 1
         points = points[index+1:len(points)]
         points = points.lstrip()
-        if(LT.macheGerade(x2, y2)=="stop"):
-            return "stop"
+        #if(LT.macheGerade(x2, y2)=="stop"):
+        #    return "stop"
         x1 = x2
         y1 = y2
         continue
     return
 
 def parse(file):
+    svgLesen()
     return

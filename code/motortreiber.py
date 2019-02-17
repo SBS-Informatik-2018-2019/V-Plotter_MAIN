@@ -9,18 +9,22 @@ actMotorLaengeA = 0 # do not edit actML
 actMotorLaengeB = 0 # do not edit actML
 #END VARIABLES####################################
 
+#getters & setters
+def getActMotorLaengeA():
+    return actMotorLaengeA
+
+def getActMotorLaengeB():
+    return actMotorLaengeB
+#END getters & setters
+
+# legt die Anfangslängen fest auf die der Motor zu Beginn eingestellt wurde
 def initLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
     actMotorLaengeA = round(a)
     actMotorLaengeB = round(b)
 
-def getActMotorLaengeA():
-    return actMotorLaengeA
-
-def getActMotorLaengeB():
-    return actMotorLaengeB
-
+# TODO: KOMMENTAR
 def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
@@ -48,8 +52,10 @@ def setLaenge(a, b):
         return "stop"
     return 0
 
-
+# TODO: KOMMENTAR
 class motor (threading.Thread):
+    
+    # TODO: KOMMENTAR
     def __init__(self, steps , Tmult , inv):
         threading.Thread.__init__(self)
         self.steps=steps
@@ -71,6 +77,7 @@ class motor (threading.Thread):
         IO.output(self.C, False)
         IO.output(self.D, False)
 
+    # TODO: KOMMENTAR
     def run(self):
         def Step1():
             IO.output(self.D, True)
@@ -113,6 +120,7 @@ class motor (threading.Thread):
             IO.output(self.D, False)
             IO.output(self.A, False)
 
+        # TODO: KOMMENTAR
         if self.steps==0:
             return 0
         if self.steps > 0:

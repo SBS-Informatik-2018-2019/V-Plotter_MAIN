@@ -26,4 +26,10 @@
 	stroke-linejoin="round"
 	fill="none"
 	/>
+	<path 
+	d="M820,820
+		L1100,820 1200,920 1100,1020 1100,820 820,1020 1100,1020 820,820 820,1020"
+	stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
+	fill="none"
+	/>
 </svg>

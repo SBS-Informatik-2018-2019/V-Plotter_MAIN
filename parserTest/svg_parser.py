@@ -8,6 +8,9 @@ STARTY = 800
 punkteX = [0,0] # do not edit points
 punkteY = [0,0] # do not edit points
 
+groesseX = 10000 # Größe des Zeichenbereichs
+groesseY = 10000
+
 nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 #END VARIABLES####################################
 
@@ -59,21 +62,34 @@ def machePath(path_elements):
     while len(path_elements) != 0:
         if(path_elements[0] == "M"):
             print("MOVETO - Bitte entfernen sie den Stift!")
-            path_elements = path_elements[1, len(path_elements)]
+            path_elements = path_elements[1: len(path_elements)-1]
 #           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
+            index = indexNaechsterBuchstabe(path_elements)
+            print(path_elements[0: index])
 
         elif(path_elements[0] == "L"):
             print("LINETO - Zeichnen einer Geraden")
-            path_elements = path_elements[1, len(path_elements)]
+            path_elements = path_elements[1: len(path_elements)-1]
 #           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
+            index = indexNaechsterBuchstabe(path_elements)
+            print(path_elements[0: index])
 
 #        path_elements.find(0)
 #        path_elements.index("M")
 
-
-#    LT.macheGerade()
+def indexNaechsterBuchstabe(string):
+    index = len(string)
+    if index > string.find('M', 0, index):
+        index = string.find('M', 0, index)
+    if index > string.find('L', 0, index):
+        index = string.find('L', 0, index)
+    elif index > string.find('C', 0, index):
+        index = string.find('C', 0, index)
+    elif index > string.find('Z', 0, index):
+        index = string.find('Z', 0, index)
+    return index
 
 # by Paul schrittweise Ansteuern der Koordinaten eine Polyline
 def machePolyline(points):

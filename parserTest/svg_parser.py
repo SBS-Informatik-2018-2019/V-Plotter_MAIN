@@ -67,7 +67,7 @@ def machePolyline(points):
     points = points[index+1:len(points)]
     points = points.lstrip()
 
-    #LT.initPosition(STARTX,STARTY) Paul? STARTX= x1; Startposition setzen, wie bei MOVETO in path
+    #LT.initPosition(STARTX,STARTY) Paul? STARTX= x1; Startposition setzen, nicht wie bei MOVETO in path
 
     # Schleife über die gesamte Länge des Strings points (Nutzen einer Liste?)
     while len(points) != 0:

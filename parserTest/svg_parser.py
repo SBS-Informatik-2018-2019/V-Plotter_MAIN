@@ -32,7 +32,7 @@ def svgLesen():
         pathElement = svgRootElement.find("svgNs:path", nameSpace)
         string = pathElement.get('d')
         print("-> PATH: " + string)
-        machePath()
+        machePath(string)
     elif (svgRootElement.find("svgNs:polyline", nameSpace) != None):
         polylineElement = svgRootElement.find("svgNs:polyline", nameSpace)
         points = polylineElement.get('points')
@@ -40,16 +40,21 @@ def svgLesen():
         machePolyline(points)
     return
 
-# by Paul ?was macht diese Funktion
+# by Paul erstellen einer linearen Liste mit allen Punkten
 def punkteSchreiben():
     global punkteX
     global punkteY
+
+    scalieren()
+#    LT.macheGerade()
     return
 
 #by Paul Skalieren der Größe auf eine vorbestimmtes Feld des Plotters
 def scalieren():
     return
 
+def machePath(string):
+    pass
 
 # by Paul schrittweise Ansteuern der Koordinaten eine Polyline
 def machePolyline(points):

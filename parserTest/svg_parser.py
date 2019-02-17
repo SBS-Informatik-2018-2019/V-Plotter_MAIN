@@ -25,6 +25,7 @@ liste.reverse()          # [8,7,6,5,4,4,3,2]
 print(liste.pop())       # 2; [8,7,6,5,4,4,3]
 #
 
+# by Niklas Start des Einlesens einer svg-Datei
 def svgLesen():
     svgRootElement = ET.parse(FILE).getroot()
     if (svgRootElement.find("svgNs:path", nameSpace) != None):
@@ -35,28 +36,29 @@ def svgLesen():
         polylineElement = svgRootElement.find("svgNs:polyline", nameSpace)
         points = polylineElement.get('points')
         print("-> Polyline: " + points)
+        machePolyline(points)
     return
 
+# by Paul ?was macht diese Funktion
 def punkteSchreiben():
     global punkteX
     global punkteY
     return
 
+#by Paul Skalieren der Größe auf eine vorbestimmtes Feld des Plotters
 def scalieren():
     return
 
 
-
-def machePolyline(file):
-    svgRootElement = ET.parse(file).getroot()
-    polylineElement = svgRootElement.find("{http://www.w3.org/2000/svg}polyline")
-    points = polylineElement.get('points')
-    #print("->Polyline: points=(" + points + ")")
+# by Paul schrittweise Ansteuern der Koordinaten eine Polyline
+def machePolyline(points):
+    # separate x1 coord from points
     points = points + " "
     points = points.lstrip()
     index = points.index(',')
     x1 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+    
+    # separate y1 coord from points
     points = points[index+1:len(points)]
     points = points.lstrip()
     index = points.index(' ')
@@ -64,23 +66,30 @@ def machePolyline(file):
 
     points = points[index+1:len(points)]
     points = points.lstrip()
-    #LT.initPosition(STARTX,STARTY)
+
+    #LT.initPosition(STARTX,STARTY) Paul? STARTX= x1; Startposition setzen, wie bei MOVETO in path
+
+    # Schleife über die gesamte Länge des Strings points (Nutzen einer Liste?)
     while len(points) != 0:
+        # separate x2 coord from points
         points = points.lstrip()
         index = points.index(',')
         x2 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if(x2<=0):
             x2 = 1
+        # separate y2 coord from points
         points = points[index+1:len(points)]
         points = points.lstrip()
         index = points.index(' ')
         y2 = float(points[0:index])
         if(y2<=0):
             y2 = 1
+        
         points = points[index+1:len(points)]
         points = points.lstrip()
-        #if(LT.macheGerade(x2, y2)=="stop"):
-        #    return "stop"
+#        if(LT.macheGerade(x2, y2)=="stop"):
+#            return "stop"
+        # Vormerken der Position des Plotters? 
         x1 = x2
         y1 = y2
         continue

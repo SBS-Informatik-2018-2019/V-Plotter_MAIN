@@ -8,4 +8,4 @@ if __name__ == "__main__":
     sleep(1)
     print("Bitte den Anweisungen hier folgen!")
     print("-> mit [Strg] + [C] beenden")
-    
+    svg_parser.parse("file.svg")

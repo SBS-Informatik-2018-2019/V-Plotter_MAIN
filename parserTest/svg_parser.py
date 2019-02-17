@@ -30,9 +30,9 @@ def svgLesen():
     svgRootElement = ET.parse(FILE).getroot()
     if (svgRootElement.find("svgNs:path", nameSpace) != None):
         pathElement = svgRootElement.find("svgNs:path", nameSpace)
-        string = pathElement.get('d')
-        print("-> PATH: " + string)
-        machePath(string)
+        path = pathElement.get('d')
+        print("-> PATH: " + path)
+        machePath(path)
     elif (svgRootElement.find("svgNs:polyline", nameSpace) != None):
         polylineElement = svgRootElement.find("svgNs:polyline", nameSpace)
         points = polylineElement.get('points')
@@ -46,18 +46,38 @@ def punkteSchreiben():
     global punkteY
 
     scalieren()
-#    LT.macheGerade()
     return
 
 #by Paul Skalieren der Größe auf eine vorbestimmtes Feld des Plotters
 def scalieren():
     return
 
-def machePath(string):
-    pass
+
+
+def machePath(path_elements):
+
+    while len(path_elements) != 0:
+        if(path_elements[0] == "M"):
+            print("MOVETO - Bitte entfernen sie den Stift!")
+            path_elements = path_elements[1, len(path_elements)]
+#           plotterio.aufOKwarten()
+            path_elements = path_elements.lstrip()
+
+        elif(path_elements[0] == "L"):
+            print("LINETO - Zeichnen einer Geraden")
+            path_elements = path_elements[1, len(path_elements)]
+#           plotterio.aufOKwarten()
+            path_elements = path_elements.lstrip()
+
+#        path_elements.find(0)
+#        path_elements.index("M")
+
+
+#    LT.macheGerade()
 
 # by Paul schrittweise Ansteuern der Koordinaten eine Polyline
 def machePolyline(points):
+
     # separate x1 coord from points
     points = points + " "
     points = points.lstrip()
@@ -75,7 +95,7 @@ def machePolyline(points):
 
     #LT.initPosition(STARTX,STARTY) Paul Startkoordinaten an Motor übergeben
 
-    # Schleife über die gesamte Länge des Strings points (Nutzen einer Liste?)
+    # Schleife über die gesamte Länge des Strings points (Nutzen einer Liste)
     while len(points) != 0:
         # separate x2 coord from points
         points = points.lstrip()

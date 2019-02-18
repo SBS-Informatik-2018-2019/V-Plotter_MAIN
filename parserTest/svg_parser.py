@@ -6,12 +6,14 @@ import xml.etree.ElementTree as ET
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
-
-
 nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 
-punkteX = [0,0] # do not edit points
-punkteY = [0,0] # do not edit points
+punkteX = []
+punkteY = []
+punkteCmd = []
+
+startZx = 0
+startZy = 0
 #END VARIABLES####################################
 
 def parse(file):
@@ -30,7 +32,7 @@ def svgLesen():
         polylineElement = svgRootElement.find("svgNs:polyline", nameSpace)
         points = polylineElement.get('points')
         print("-> Polyline: " + points)
-        machePolyline(machePolylineListe(points))
+        machePolylineListe(points)
     return
 
 def machePath(path_elements):
@@ -40,9 +42,9 @@ def machePath(path_elements):
     index = path_elements.index(',')
     x1 = pos[0: index-1]
     y1 = pos[index: len(pos)]
-    print("StartX: " + x1 + " StartY: " + y1)
 
     while len(path_elements) != 0:
+        path_elements = path_elements.lstrip()
         if(path_elements[0] == "M"):
             print("MOVETO - Bitte entfernen sie den Stift!")
             path_elements = path_elements[1: len(path_elements)]
@@ -50,19 +52,32 @@ def machePath(path_elements):
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-
+#           movetoBefehl(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
-
-            path_elements = path_elements.lstrip()
 
         elif(path_elements[0] == "L"):
             print("LINETO - Zeichnen einer Geraden")
             path_elements = path_elements[1: len(path_elements)]
-#           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
+#            machePolylineListe(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
+
+        elif(path_elements[0] == "C"):
+            print("CURVETO - Zeichnen einer Curve")
+            path_elements = path_elements[1: len(path_elements)]
+            path_elements = path_elements.lstrip()
+            index = indexNaechsterBuchstabe(path_elements)
+            print(path_elements[0: index])
+#            machePolylineListe(path_elements[0: index])
+            path_elements = path_elements[index: len(path_elements)]
+
+        elif(path_elements[0] == "Z"):
+            print("Zurücklauf - Zeichnen zurück zum Startpunkt")
+#            goto scaler(x1, x2, 'L')
+            print(x1 + "," + y1)
+            path_elements = path_elements[1: len(path_elements)]
 
         else:
             print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
@@ -71,8 +86,22 @@ def machePath(path_elements):
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-            path_elements = path_elements[index: len(path_elements)]
+#           movetoBefehl(path_elements[0: index])
 
+            path_elements = path_elements[index: len(path_elements)]
+    machePathListe()
+
+# speichert die Startposition, um diese für Z-Bewegungen zu nutzen
+def setzeStart(string):
+    global startZx = 0
+    global startZy = 0
+    #Startposition
+    index = indexNaechsterBuchstabe(string[1: len(string)])
+    pos = string[1: index]
+    index = string.index(',')
+    global startZx = pos[0: index-1]
+    global startZy = pos[index: len(pos)]
+    return 
             
 def indexNaechsterBuchstabe(string):
     index = len(string)
@@ -81,26 +110,48 @@ def indexNaechsterBuchstabe(string):
         index = string.find('M', 0, index)
     if index > string.find('L', 0, index) and string.find('L', 0, index) > 0:
         index = string.find('L', 0, index)
-    elif index > string.find('H', 0, index) and string.find('H', 0, index) > 0:
+    if index > string.find('H', 0, index) and string.find('H', 0, index) > 0:
         index = string.find('H', 0, index)
-    elif index > string.find('V', 0, index) and string.find('V', 0, index) > 0:
+    if index > string.find('V', 0, index) and string.find('V', 0, index) > 0:
         index = string.find('V', 0, index)
-    elif index > string.find('C', 0, index) and string.find('C', 0, index) > 0:
+    if index > string.find('C', 0, index) and string.find('C', 0, index) > 0:
         index = string.find('C', 0, index)
-    elif index > string.find('S', 0, index) and string.find('S', 0, index) > 0:
+    if index > string.find('S', 0, index) and string.find('S', 0, index) > 0:
         index = string.find('S', 0, index)
-    elif index > string.find('Q', 0, index) and string.find('Q', 0, index) > 0:
+    if index > string.find('Q', 0, index) and string.find('Q', 0, index) > 0:
         index = string.find('Q', 0, index)
-    elif index > string.find('T', 0, index) and string.find('T', 0, index) > 0:
+    if index > string.find('T', 0, index) and string.find('T', 0, index) > 0:
         index = string.find('T', 0, index)
-    elif index > string.find('A', 0, index) and string.find('A', 0, index) > 0:
+    if index > string.find('A', 0, index) and string.find('A', 0, index) > 0:
         index = string.find('A', 0, index)
-    elif index > string.find('Z', 0, index) and string.find('Z', 0, index) > 0:
+    if index > string.find('Z', 0, index) and string.find('Z', 0, index) > 0:
         index = string.find('Z', 0, index)
+    print(index)
     return index
 
+# Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
+def macheMove():
 
-# schrittweise Ansteuern der Koordinaten eine Polylineliste /Erstellen einer linearen Liste aus den Punkten von Geraden
+    return
+
+
+# Hinzufügen der Punkte eines Lineto-Befehls zu den globalen Listen X,Y & Cmd
+def macheLine():
+
+    return
+
+# Hinzufügen der Punkte einer konvertierten Kurve zu den globalen Listen X,Y & Cmd
+def macheCurve(curveCoord):
+
+    return
+
+# Übergeben der linearen Liste von Punkten an der scaler
+def machePathListe():
+    #goto scaler
+    return
+
+
+# Erstellen einer linearen Liste aus den Punkten einer Polyline
 def machePolylineListe(points):
     points = points + " "
     polylinePointsX = list()
@@ -119,30 +170,4 @@ def machePolylineListe(points):
         points = points[index+1:len(points)]
         points = points.lstrip()
     #goto scaler
-    return
-
-def convertCurve(curveCoord):
-    pass
-
-# schrittweise Ansteuern der Koordiaten einer PolylineListe
-def machePolyline(polylineListe):
-    polylineListe.reverse()
-    print("MOVETO - Bitte entfernen sie den Stift!")
-    # IO.aufOKwarten()
-    # if(LT.macheGerade(polylineListe.pop(), polylineListe.pop())=="stop"):
-    #       return "stop"
-    (str(polylineListe.pop()))
-    (str(polylineListe.pop()))
-    print("LINE - Bitte legen sie den Stift ein!")
-     # IO.aufOKwarten()
-                    #LT.initPosition(STARTX,STARTY) Paul Startkoordinaten an Motor übergeben
-                    # --> nach main
-
-    # Schleife über die gesamte Liste
-    while(len(polylineListe) > 0):
-        (str(polylineListe.pop()))
-        (str(polylineListe.pop()))
-#        if(LT.macheGerade(polylineListe.pop(), polylineListe.pop())=="stop"):
-#            return "stop"
-        continue
     return

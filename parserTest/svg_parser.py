@@ -36,23 +36,16 @@ def svgLesen():
     return
 
 def machePath(path_elements):
-    #Startposition
-    index = indexNaechsterBuchstabe(path_elements[1: len(path_elements)])
-    pos = path_elements[1: index]
-    index = path_elements.index(',')
-    x1 = pos[0: index-1]
-    y1 = pos[index: len(pos)]
-
+    setzeStart(path_elements)
     while len(path_elements) != 0:
         path_elements = path_elements.lstrip()
         if(path_elements[0] == "M"):
             print("MOVETO - Bitte entfernen sie den Stift!")
             path_elements = path_elements[1: len(path_elements)]
-#           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-#           movetoBefehl(path_elements[0: index])
+            macheMove(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
         elif(path_elements[0] == "L"):
@@ -61,7 +54,7 @@ def machePath(path_elements):
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-#            machePolylineListe(path_elements[0: index])
+            macheLine(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
         elif(path_elements[0] == "C"):
@@ -70,41 +63,44 @@ def machePath(path_elements):
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-#            machePolylineListe(path_elements[0: index])
+            macheCurve(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
         elif(path_elements[0] == "Z"):
             print("Zurücklauf - Zeichnen zurück zum Startpunkt")
-#            goto scaler(x1, x2, 'L')
-            print(x1 + "," + y1)
+            laufeZurueck()
+            print(startZx + "," + startZy)
             path_elements = path_elements[1: len(path_elements)]
+            setzeStart(path_elements)
 
         else:
             print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
             path_elements = path_elements[1: len(path_elements)]
-#           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-#           movetoBefehl(path_elements[0: index])
+            macheLine(path_elements[0: index])
 
             path_elements = path_elements[index: len(path_elements)]
     machePathListe()
 
 # speichert die Startposition, um diese für Z-Bewegungen zu nutzen
 def setzeStart(string):
-    global startZx
-    global startZy
-    startZx = 0
-    startZy = 0
-    #Startposition
-    index = indexNaechsterBuchstabe(string[1: len(string)])
-    pos = string[1: index]
-    index = string.index(',')
-    startZx = pos[0: index-1]
-    startZy = pos[index: len(pos)]
-    return 
-            
+    if(string != ""):
+        global startZx
+        global startZy
+        #Startposition
+        index = indexNaechsterBuchstabe(string[1: len(string)])
+        pos = string[1: index]
+        index = string.index(',')
+        startZx = pos[0: index-1]
+        startZy = pos[index: len(pos)]
+    return
+
+def laufeZurueck():
+#    hinzufügen StartZx, startZy
+    return
+
 def indexNaechsterBuchstabe(string):
     index = len(string)
     string = string.lstrip()
@@ -132,13 +128,13 @@ def indexNaechsterBuchstabe(string):
     return index
 
 # Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
-def macheMove():
+def macheMove(moveCoords):
 
     return
 
 
 # Hinzufügen der Punkte eines Lineto-Befehls zu den globalen Listen X,Y & Cmd
-def macheLine():
+def macheLine(lineCoords):
 
     return
 
@@ -149,6 +145,8 @@ def macheCurve(curveCoord):
 
 # Übergeben der linearen Liste von Punkten an der scaler
 def machePathListe():
+    print(startZx)
+    print(startZy)
     #goto scaler
     return
 

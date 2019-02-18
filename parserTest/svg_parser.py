@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
-#import scaler
+#import scaler as SCALER
 #import linetracer as LT
 #import plotterio as IO
 
@@ -161,6 +161,7 @@ def machePolylineListe(points):
     points = points + " "
     polylinePointsX = list()
     polylinePointsY = list()
+    polylineCMDs = list(("m"))
     while len(points) != 0:
         # separate xpolynext and ypolynext coord from points
         points = points.lstrip()
@@ -174,5 +175,8 @@ def machePolylineListe(points):
         polylinePointsY.append(polyNextY)
         points = points[index+1:len(points)]
         points = points.lstrip()
-    #goto scaler
+        polylineCMDs.append("l")
+        continue
+    polylineCMDs.pop()
+    SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
     return

@@ -96,7 +96,7 @@ def machePath(path_elements):
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-            macheCurve(path_elements[0: index])
+            macheLine(path_elements[0: index])  #Vereinfachung, Bezier-Bernstein-Approximation
             path_elements = path_elements[index: len(path_elements)]
         
         # eine Zeichnung wird zum Startpunkt zurückgeführt
@@ -114,7 +114,6 @@ def machePath(path_elements):
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             macheLine(path_elements[0: index])
-
             path_elements = path_elements[index: len(path_elements)]
     print("")
     machePathListe()
@@ -189,7 +188,6 @@ def macheMove(moveCoords):
         
         punkteCmds.append('M')
     return
-
 
 # Hinzufügen der Punkte eines Lineto-Befehls zu den globalen Listen X,Y & Cmd
 def macheLine(lineCoords):

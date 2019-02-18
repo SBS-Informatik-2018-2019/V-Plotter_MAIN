@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
-import scaler
+#import scaler
 #import linetracer as LT
 #import plotterio as IO
 
@@ -33,36 +33,6 @@ def svgLesen():
         machePolyline(machePolylineListe(points))
     return
 
-# Erstellen einer linearen Liste aus den Punkten von Geraden
-def punkteSchreiben(points):
-    # Schleife über die gesamte Länge des Strings points
-    while len(points) != 0:
-        # separate x coord from points
-        points = points.lstrip()
-        index = points.index(',')
-        x = float(points[0:index])
-        if(x<=0):
-            x = 1
-        # separate y coord from points
-        points = points[index+1:len(points)]
-        points = points.lstrip()
-        index = points.index(' ')
-        y = float(points[0:index])
-        if(y<=0):
-            y = 1
-        
-        points = points[index+1:len(points)]
-        points = points.lstrip()
-#        if(LT.macheGerade(x2, y2)=="stop"):
-#            return "stop"
-        # Vormerken der Position des Plotters?
-        continue
-    scaler.scale(punkteX, punkteY, 'L')
-    return
-
-def convertCurve(curveCoord):
-    pass
-
 def machePath(path_elements):
     #Startposition
     index = indexNaechsterBuchstabe(path_elements[1: len(path_elements)])
@@ -80,14 +50,17 @@ def machePath(path_elements):
             path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
+
             path_elements = path_elements[index: len(path_elements)]
+
+            path_elements = path_elements.lstrip()
 
         elif(path_elements[0] == "L"):
             print("LINETO - Zeichnen einer Geraden")
             path_elements = path_elements[1: len(path_elements)]
 #           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
- S           index = indexNaechsterBuchstabe(path_elements)
+            index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
@@ -127,7 +100,7 @@ def indexNaechsterBuchstabe(string):
     return index
 
 
-# schrittweise Ansteuern der Koordinaten eine Polylineliste
+# schrittweise Ansteuern der Koordinaten eine Polylineliste /Erstellen einer linearen Liste aus den Punkten von Geraden
 def machePolylineListe(points):
     points = points + " "
     polylinePointsX = list()
@@ -148,7 +121,8 @@ def machePolylineListe(points):
     #goto scaler
     return
 
-
+def convertCurve(curveCoord):
+    pass
 
 # schrittweise Ansteuern der Koordiaten einer PolylineListe
 def machePolyline(polylineListe):

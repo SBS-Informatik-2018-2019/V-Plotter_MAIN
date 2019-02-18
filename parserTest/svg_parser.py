@@ -178,5 +178,5 @@ def machePolylineListe(points):
         polylineCMDs.append("l")
         continue
     polylineCMDs.pop()
-    SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
+    #SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
     return

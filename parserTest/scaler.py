@@ -9,7 +9,7 @@ groesseX = 600 # Größe des Zeichenbereichs
 groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
 if __name__ == "__main__":
-    scale
+    scale()
     pass
 
 def scale(pointsX, pointsY, cmds):
@@ -19,10 +19,10 @@ def scale(pointsX, pointsY, cmds):
     sortpointsX.sort()
     sortpointsY.sort()
     minx = sortpointsX[0]
-    miny = sortpointsX[0]
+    miny = sortpointsY[0]
     for i in range(len(pointsX)):
-        pointsX.[i] = pointsX.[i] - minx
-        pointsY.[i] = pointsY.[i] - miny
+        pointsX[i] = pointsX[i] - minx
+        pointsY[i] = pointsY[i] - miny
     #scale to max
     sortpointsX = list(pointsX)
     sortpointsY = list(pointsY)
@@ -31,12 +31,12 @@ def scale(pointsX, pointsY, cmds):
     maxx = sortpointsX[0]
     maxy = sortpointsY[0]
     scalerX = groesseX / maxx
-    scalerY = groesseY / maxx
+    scalerY = groesseY / maxy
     scaler = 0
     if(scalerX > scalerY):
         scaler = scalerY
     else:
         scaler = scalerY
     for i in range(len(pointsX)):
-        pointsX.[i] = pointsX.[i] * scaler
-        pointsY.[i] = pointsY.[i] * scaler
+        pointsX[i] = pointsX[i] * scaler
+        pointsY[i] = pointsY[i] * scaler

@@ -8,9 +8,9 @@ import xml.etree.ElementTree as ET
 FILE="file.svg" #name der standart datei
 nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 
-punkteX = []
-punkteY = []
-punkteCmd = []
+punkteX = list()
+punkteY = list()
+punkteCmd = list()
 
 startZx = 0
 startZy = 0
@@ -93,14 +93,16 @@ def machePath(path_elements):
 
 # speichert die Startposition, um diese für Z-Bewegungen zu nutzen
 def setzeStart(string):
-    global startZx = 0
-    global startZy = 0
+    global startZx
+    global startZy
+    startZx = 0
+    startZy = 0
     #Startposition
     index = indexNaechsterBuchstabe(string[1: len(string)])
     pos = string[1: index]
     index = string.index(',')
-    global startZx = pos[0: index-1]
-    global startZy = pos[index: len(pos)]
+    startZx = pos[0: index-1]
+    startZy = pos[index: len(pos)]
     return 
             
 def indexNaechsterBuchstabe(string):

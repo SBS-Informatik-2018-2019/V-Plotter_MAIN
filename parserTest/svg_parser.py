@@ -48,7 +48,7 @@ def machePath(path_elements):
         path_elements = path_elements.lstrip()
 
         # ein Moveto bewegt nur den Plotter
-        if(path_elements[0] == "M"):
+        if(path_elements[0] == "M" or path_elements[0] == "m"):
             print("MOVETO - Bitte entfernen sie den Stift!")
             path_elements = path_elements[1: len(path_elements)]
             path_elements = path_elements.lstrip()
@@ -60,7 +60,7 @@ def machePath(path_elements):
             setzeStart(path_elements)   #!!!!!!!
 
         # eine einfache Lineto wird gezeichnet
-        elif(path_elements[0] == "L"):
+        elif(path_elements[0] == "L" or path_elements[0] == "l"):
             print("LINETO - Zeichnen einer Geraden")
             path_elements = path_elements[1: len(path_elements)]
             path_elements = path_elements.lstrip()
@@ -70,7 +70,7 @@ def machePath(path_elements):
             path_elements = path_elements[index: len(path_elements)]
         
         # H besitzt als Argument die x-Position der Geraden
-        elif(path_elements[0] == "H"):
+        elif(path_elements[0] == "H" or path_elements[0] == "h"):
             print("horLINETO - Zeichnen einer horizontalen Geraden")
             path_elements = path_elements[1: len(path_elements)]
             path_elements = path_elements.lstrip()
@@ -80,7 +80,7 @@ def machePath(path_elements):
             path_elements = path_elements[index: len(path_elements)]
 
         # V besitzt als Argument die y-Position der Geraden
-        elif(path_elements[0] == "V"):
+        elif(path_elements[0] == "V" or path_elements[0] == "v"):
             print("verLINETO - Zeichnen einer vertikalen Geraden")
             path_elements = path_elements[1: len(path_elements)]
             path_elements = path_elements.lstrip()
@@ -90,7 +90,7 @@ def machePath(path_elements):
             path_elements = path_elements[index: len(path_elements)]
 
         # EIne Curve soll gezeichnet werden
-        elif(path_elements[0] == "C"):
+        elif(path_elements[0] == "C" or path_elements[0] == "c"):
             print("CURVETO - Zeichnen einer Curve")
             path_elements = path_elements[1: len(path_elements)]
             path_elements = path_elements.lstrip()
@@ -100,7 +100,7 @@ def machePath(path_elements):
             path_elements = path_elements[index: len(path_elements)]
         
         # eine Zeichnung wird zum Startpunkt zurückgeführt
-        elif(path_elements[0] == "Z"):
+        elif(path_elements[0] == "Z" or path_elements[0] == "z"):
             print("Zurücklauf - Zeichnen zurück zum Startpunkt")
             laufeZurueck()
             print(startZx + "," + startZy)
@@ -121,11 +121,11 @@ def machePath(path_elements):
 
 # speichert die Startposition, um diese für Z-Bewegungen zu nutzen
 def setzeStart(string):
-    if(string != ""):
+    if(len(string) != 0):
         global startZx
         global startZy
         #Startposition
-        index = indexNaechsterBuchstabe(string[1: len(string)])
+        index = string.index(' ') #Wenn die Anfangskoordianten teil eines größeren durch Leerzeichen getrennten Elements sind
         pos = string[1: index]
         index = string.index(',')
         startZx = pos[0: index-1]
@@ -170,6 +170,26 @@ def indexNaechsterBuchstabe(string):
         index = string.find('A', 0, index)
     if index > string.find('Z', 0, index) and string.find('Z', 0, index) > 0:
         index = string.find('Z', 0, index)
+    if index > string.find('m', 0, index) and string.find('m', 0, index) > 0:
+        index = string.find('m', 0, index)
+    if index > string.find('l', 0, index) and string.find('l', 0, index) > 0:
+        index = string.find('l', 0, index)
+    if index > string.find('h', 0, index) and string.find('h', 0, index) > 0:
+        index = string.find('h', 0, index)
+    if index > string.find('v', 0, index) and string.find('v', 0, index) > 0:
+        index = string.find('v', 0, index)
+    if index > string.find('c', 0, index) and string.find('c', 0, index) > 0:
+        index = string.find('c', 0, index)
+    if index > string.find('s', 0, index) and string.find('s', 0, index) > 0:
+        index = string.find('s', 0, index)
+    if index > string.find('q', 0, index) and string.find('q', 0, index) > 0:
+        index = string.find('q', 0, index)
+    if index > string.find('t', 0, index) and string.find('t', 0, index) > 0:
+        index = string.find('t', 0, index)
+    if index > string.find('a', 0, index) and string.find('a', 0, index) > 0:
+        index = string.find('a', 0, index)
+    if index > string.find('z', 0, index) and string.find('z', 0, index) > 0:
+        index = string.find('z', 0, index)
     return index
 
 # Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd

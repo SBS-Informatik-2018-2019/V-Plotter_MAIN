@@ -7,7 +7,7 @@ import plotterio as IO
 #VARIABLES#######################################
 minSchritt = 1 # auflösung der greraden
 L = 2030 # abstand der motoren in schritten
-actCMD = "l" # do not edit startpunkt
+actCMD = "l" # do not edit cmd
 startPosX = 0 # do not edit startpunkt
 startPosY = 0 # do not edit startpunkt
 #END VARIABLES####################################

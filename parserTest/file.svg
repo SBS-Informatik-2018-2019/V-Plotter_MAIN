@@ -9,11 +9,7 @@
 	<line x1="2030" y1="0" x2="820" y2="820" stroke="grey" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,5"></line>
 
 	<path 
-	d="M820,820
-		L1100,820 1200,920 1100,1020 1100,820 820,1020 1100,1020 820,820 820,1020
-		M100,100
-		C200,300
-		V300,300 300,700Z"
+	d="M820,820H200V100L1100,820 1200,920 1100,1020 1100,820 820,1020 1100,1020 820,820 820,1020M100,100C200,300Q300,300 300,700Z"
 	stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
 	fill="none"
 	/>

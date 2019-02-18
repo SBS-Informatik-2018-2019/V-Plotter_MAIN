@@ -57,6 +57,26 @@ def machePath(path_elements):
             print(path_elements[0: index])
             macheLine(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
+        
+        # H besitzt als Argument die x-Position der Geraden
+        elif(path_elements[0] == "H"):
+            print("horLINETO - Zeichnen einer horizontalen Geraden")
+            path_elements = path_elements[1: len(path_elements)]
+            path_elements = path_elements.lstrip()
+            index = indexNaechsterBuchstabe(path_elements)
+            print(path_elements[0: index])
+            laufeCoords(punkteX[len(punkteX)-1], path_elements[0: index])
+            path_elements = path_elements[index: len(path_elements)]
+
+        # V besitzt als Argument die y-Position der Geraden
+        elif(path_elements[0] == "V"):
+            print("verLINETO - Zeichnen einer vertikalen Geraden")
+            path_elements = path_elements[1: len(path_elements)]
+            path_elements = path_elements.lstrip()
+            index = indexNaechsterBuchstabe(path_elements)
+            print(path_elements[0: index])
+            laufeCoords(path_elements[0: index], punkteY[len(punkteY)-1])
+            path_elements = path_elements[index: len(path_elements)]
 
         elif(path_elements[0] == "C"):
             print("CURVETO - Zeichnen einer Curve")
@@ -98,10 +118,17 @@ def setzeStart(string):
         startZy = pos[index: len(pos)]
     return
 
+def laufeCoords(x, y):
+    print(str(x) + " " + str(y))
+    punkteX.append(float(x))
+    punkteY.append(float(y))
+    punkteCmd.append('L')
+    return
+
 # zurückkehren zur Startposition, nachdem 
 def laufeZurueck():
-    punkteX.append(startZx)
-    punkteY.append(startZy)
+    punkteX.append(float(startZx))
+    punkteY.append(float(startZy))
     punkteCmd.append('L')
     return
 
@@ -137,12 +164,12 @@ def macheMove(moveCoords):
         moveCoords = moveCoords.lstrip()
         # X- Koordinate auslesen
         index = moveCoords.index(',')
-        punkteX.append(int(moveCoords[0: index]))
+        punkteX.append(float(moveCoords[0: index]))
         moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
         
         # Y-Koordinate auslesen
         index = moveCoords.index(' ')
-        punkteY.append(int(moveCoords[0: index]))
+        punkteY.append(float(moveCoords[0: index]))
         moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
         
         punkteCmd.append('M')
@@ -156,12 +183,12 @@ def macheLine(lineCoords):
         lineCoords = lineCoords.lstrip()
         # X- Koordinate auslesen
         index = lineCoords.index(',')
-        punkteX.append(int(lineCoords[0: index]))
+        punkteX.append(float(lineCoords[0: index]))
         lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
         
         # Y-Koordinate auslesen
         index = lineCoords.index(' ')
-        punkteY.append(int(lineCoords[0: index]))
+        punkteY.append(float(lineCoords[0: index]))
         lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
         
         punkteCmd.append('L')

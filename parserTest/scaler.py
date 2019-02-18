@@ -8,7 +8,9 @@ STARTY = 700 # Obere linke Ecke des Zeichenbereichs
 groesseX = 600 # Größe des Zeichenbereichs
 groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
-
+if __name__ == "__main__":
+    scale
+    pass
 
 def scale(pointsX, pointsY, cmds):
     #fix top left
@@ -21,7 +23,7 @@ def scale(pointsX, pointsY, cmds):
     for i in range(len(pointsX)):
         pointsX.[i] = pointsX.[i] - minx
         pointsY.[i] = pointsY.[i] - miny
-    #scale to max x
+    #scale to max
     sortpointsX = list(pointsX)
     sortpointsY = list(pointsY)
     sortpointsX.sort().reverse()
@@ -30,13 +32,11 @@ def scale(pointsX, pointsY, cmds):
     maxy = sortpointsY[0]
     scalerX = groesseX / maxx
     scalerY = groesseY / maxx
+    scaler = 0
     if(scalerX > scalerY):
-        
-
-    for i in range(len(pointsX)):
-        pointsX.[i] = pointsX.[i] * scaler
-        pointsY.[i] = pointsY.[i] * scaler
-    scaler = groesseY / maxx
+        scaler = scalerY
+    else:
+        scaler = scalerY
     for i in range(len(pointsX)):
         pointsX.[i] = pointsX.[i] * scaler
         pointsY.[i] = pointsY.[i] * scaler

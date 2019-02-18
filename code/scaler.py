@@ -9,9 +9,12 @@ STARTY = 800 # Obere linke Ecke des Zeichenbereichs
 groesseX = 600 # Größe des Zeichenbereichs
 groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
+
+#TODO: kommentar
 def initScale():
     LT.initPosition(STARTX, STARTY)
-
+    
+#TODO: kommentar
 def scale(pointsX, pointsY, cmds):
     #fix top left
     sortpointsX = pointsX

@@ -2,10 +2,12 @@
 import math
 import time
 import motortreiber as MOTOR
+import plotterio as IO
 
 #VARIABLES#######################################
 minSchritt = 1 # auflösung der greraden
 L = 2030 # abstand der motoren in schritten
+actCMD = "l" # do not edit startpunkt
 startPosX = 0 # do not edit startpunkt
 startPosY = 0 # do not edit startpunkt
 #END VARIABLES####################################
@@ -67,3 +69,19 @@ def macheGerade(toX, toY):
     if(MOTOR.setLaenge(toA, toB)=="stop"):
         return "stop"
     return 0
+
+# cmd = m [MOVETO] oder l [LINETO]
+def fahre(toX, toY, cmd):
+    if((actCMD == "l") and (cmd == "l")):
+        macheGerade(toX, toY)
+    if((actCMD == "m") and (cmd == "m")):
+        macheGerade(toX, toY)
+    if((actCMD == "l") and (cmd == "m")):
+        print("STIFT entfernen!")
+        IO.aufOKWarten()
+        macheGerade(toX, toY)
+    if((actCMD == "m") and (cmd == "l")):
+        print("STIFT einlegen!")
+        IO.aufOKWarten()
+        macheGerade(toX, toY)
+    return

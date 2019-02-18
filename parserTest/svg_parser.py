@@ -1,5 +1,7 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
+#import linetracer as LT
+#import plotterio as IO
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
@@ -122,47 +124,41 @@ def indexNaechsterBuchstabe(string):
         index = string.find('Z', 0, index)
     return index
 
-# schrittweise Ansteuern der Koordinaten eine Polyline
-def machePolyline(points):
-    # separate x1 coord from points
+
+# schrittweise Ansteuern der Koordinaten eine Polylineliste
+def machePolylineListe(points):
     points = points + " "
-    points = points.lstrip()
-    index = points.index(',')
-    x1 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-    # separate y1 coord from points
-    points = points[index+1:len(points)]
-    points = points.lstrip()
-    index = points.index(' ')
-    y1 = float(points[0:index])
-
-    points = points[index+1:len(points)]
-    points = points.lstrip()
-
-    #LT.initPosition(STARTX,STARTY) Paul Startkoordinaten an Motor übergeben
-
-    # Schleife über die gesamte Länge des Strings points (Nutzen einer Liste)
+    polylineListe = list()
     while len(points) != 0:
-        # separate x2 coord from points
+        # separate xpolynext and ypolynext coord from points
         points = points.lstrip()
         index = points.index(',')
-        x2 = float(points[0:index]) #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if(x2<=0):
-            x2 = 1
-        # separate y2 coord from points
+        polyNextX = float(points[0:index])
+        polylineListe.append(polyNextX)
         points = points[index+1:len(points)]
         points = points.lstrip()
         index = points.index(' ')
-        y2 = float(points[0:index])
-        if(y2<=0):
-            y2 = 1
-        
+        polyNextY = float(points[0:index])
+        polylineListe.append(polyNextY)
         points = points[index+1:len(points)]
         points = points.lstrip()
-#        if(LT.macheGerade(x2, y2)=="stop"):
+    return polylineListe
+
+# schrittweise Ansteuern der Koordiaten einer PolylineListe
+def machePolyline(polylineListe):
+    polylineListe.reverse()
+    print("MOVETO - Bitte entfernen sie den Stift!")
+    # IO.aufOKwarten()
+    # if(LT.macheGerade(polylineListe.pop(), polylineListe.pop())=="stop"):
+    #       return "stop"
+    print("LINE - Bitte legen sie den Stift ein!")
+     # IO.aufOKwarten()
+                    #LT.initPosition(STARTX,STARTY) Paul Startkoordinaten an Motor übergeben
+                    # --> nach main
+
+    # Schleife über die gesamte Liste
+    while polylineListe.count != 0:
+#        if(LT.macheGerade(polylineListe.pop(), polylineListe.pop())=="stop"):
 #            return "stop"
-        # Vormerken der Position des Plotters? 
-        x1 = x2
-        y1 = y2
         continue
     return

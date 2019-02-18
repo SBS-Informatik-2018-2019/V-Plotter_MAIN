@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
+import scaler
 #import linetracer as LT
 #import plotterio as IO
 
@@ -56,15 +57,11 @@ def punkteSchreiben(points):
 #            return "stop"
         # Vormerken der Position des Plotters?
         continue
-    skalieren()
+    scaler.scale(punkteX, punkteY, 'L')
     return
 
 def convertCurve(curveCoord):
     pass
-
-# Skalieren der Größe auf eine vorbestimmtes Feld des Plotters
-def skalieren():
-    return
 
 def machePath(path_elements):
     #Startposition
@@ -90,19 +87,41 @@ def machePath(path_elements):
             path_elements = path_elements[1: len(path_elements)]
 #           plotterio.aufOKwarten()
             path_elements = path_elements.lstrip()
+ S           index = indexNaechsterBuchstabe(path_elements)
+            print(path_elements[0: index])
+            path_elements = path_elements[index: len(path_elements)]
+
+        else:
+            print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
+            path_elements = path_elements[1: len(path_elements)]
+#           plotterio.aufOKwarten()
+            path_elements = path_elements.lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
-
+            
 def indexNaechsterBuchstabe(string):
     index = len(string)
+    string = string.lstrip()
     if index > string.find('M', 0, index) and string.find('M', 0, index) > 0:
         index = string.find('M', 0, index)
     if index > string.find('L', 0, index) and string.find('L', 0, index) > 0:
         index = string.find('L', 0, index)
+    elif index > string.find('H', 0, index) and string.find('H', 0, index) > 0:
+        index = string.find('H', 0, index)
+    elif index > string.find('V', 0, index) and string.find('V', 0, index) > 0:
+        index = string.find('V', 0, index)
     elif index > string.find('C', 0, index) and string.find('C', 0, index) > 0:
         index = string.find('C', 0, index)
+    elif index > string.find('S', 0, index) and string.find('S', 0, index) > 0:
+        index = string.find('S', 0, index)
+    elif index > string.find('Q', 0, index) and string.find('Q', 0, index) > 0:
+        index = string.find('Q', 0, index)
+    elif index > string.find('T', 0, index) and string.find('T', 0, index) > 0:
+        index = string.find('T', 0, index)
+    elif index > string.find('A', 0, index) and string.find('A', 0, index) > 0:
+        index = string.find('A', 0, index)
     elif index > string.find('Z', 0, index) and string.find('Z', 0, index) > 0:
         index = string.find('Z', 0, index)
     return index

@@ -2,10 +2,8 @@
 import linetracer as LT
 
 #VARIABLES#######################################
-
 STARTX = 800 # Obere linke Ecke des Zeichenbereichs
 STARTY = 800 # Obere linke Ecke des Zeichenbereichs
-
 groesseX = 600 # Größe des Zeichenbereichs
 groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################

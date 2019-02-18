@@ -73,15 +73,19 @@ def macheGerade(toX, toY):
 # cmd = m [MOVETO] oder l [LINETO]
 def fahre(toX, toY, cmd):
     if((actCMD == "l") and (cmd == "l")):
-        macheGerade(toX, toY)
+        if (macheGerade(toX, toY) == "stop")
+            return "stop"
     if((actCMD == "m") and (cmd == "m")):
-        macheGerade(toX, toY)
+        if (macheGerade(toX, toY) == "stop")
+            return "stop"
     if((actCMD == "l") and (cmd == "m")):
         print("STIFT entfernen!")
         IO.aufOKWarten()
-        macheGerade(toX, toY)
+        if (macheGerade(toX, toY) == "stop")
+            return "stop"
     if((actCMD == "m") and (cmd == "l")):
         print("STIFT einlegen!")
         IO.aufOKWarten()
-        macheGerade(toX, toY)
+        if (macheGerade(toX, toY) == "stop")
+            return "stop"
     return

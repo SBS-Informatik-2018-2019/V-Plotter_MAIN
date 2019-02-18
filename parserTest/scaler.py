@@ -1,4 +1,5 @@
-
+#-*- coding: utf-8 -*-
+import linetracer as LT
 
 #VARIABLES#######################################
 
@@ -8,14 +9,12 @@ STARTY = 700 # Obere linke Ecke des Zeichenbereichs
 groesseX = 600 # Größe des Zeichenbereichs
 groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
-if __name__ == "__main__":
-    scale()
-    pass
+
 
 def scale(pointsX, pointsY, cmds):
     #fix top left
-    sortpointsX = list(pointsX)
-    sortpointsY = list(pointsY)
+    sortpointsX = pointsX
+    sortpointsY = pointsY
     sortpointsX.sort()
     sortpointsY.sort()
     minx = sortpointsX[0]
@@ -26,8 +25,10 @@ def scale(pointsX, pointsY, cmds):
     #scale to max
     sortpointsX = list(pointsX)
     sortpointsY = list(pointsY)
-    sortpointsX.sort().reverse()
-    sortpointsY.sort().reverse()
+    sortpointsX.sort()
+    sortpointsX.reverse()
+    sortpointsY.sort()
+    sortpointsY.reverse()
     maxx = sortpointsX[0]
     maxy = sortpointsY[0]
     scalerX = groesseX / maxx
@@ -36,7 +37,16 @@ def scale(pointsX, pointsY, cmds):
     if(scalerX > scalerY):
         scaler = scalerY
     else:
-        scaler = scalerY
+        scaler = scalerX
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] * scaler
         pointsY[i] = pointsY[i] * scaler
+    #pushto drawarea
+    for i in range(len(pointsX)):
+        pointsX[i] = pointsX[i] + STARTX
+        pointsY[i] = pointsY[i] + STARTY
+    #print
+    for i in range(len(pointsX)):
+        if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop")
+    return
+

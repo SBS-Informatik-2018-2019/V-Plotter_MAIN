@@ -10,6 +10,6 @@ if __name__ == "__main__":
     print("-> mit [Strg] + [C] beenden")
     sleep(2)
     print("-Viel Spass...")
-    svg_parser.parse("file.svg")
+    svg_parser.parse_standart()
     
     

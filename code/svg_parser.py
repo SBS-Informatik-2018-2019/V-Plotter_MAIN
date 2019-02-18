@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
-#import scaler as SCALER
+import scaler as SCALER
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
@@ -219,7 +219,7 @@ def machePathListe():
     print(punkteX)
     print(punkteY)
     print(punkteCmds)
-    #SCALER.scale(punkteX, punkteY, punkteCmds)
+    SCALER.scale(punkteX, punkteY, punkteCmds)
     return
 
 
@@ -245,5 +245,5 @@ def machePolylineListe(points):
         polylineCMDs.append("l")
         continue
     polylineCMDs.pop()
-    #SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
+    SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
     return

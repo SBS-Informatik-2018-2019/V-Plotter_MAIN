@@ -1,4 +1,0 @@
-cd /home/pi/plotter/
-del file.svg
-put file.svg
-ls

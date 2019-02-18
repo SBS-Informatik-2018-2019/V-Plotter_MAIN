@@ -36,7 +36,6 @@ def svgLesen():
     return
 
 def machePath(path_elements):
-    setzeStart(path_elements)
     while len(path_elements) != 0:
         path_elements = path_elements.lstrip()
         if(path_elements[0] == "M"):
@@ -47,6 +46,8 @@ def machePath(path_elements):
             print(path_elements[0: index])
             macheMove(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
+
+            setzeStart(path_elements)   #!!!!!!!
 
         elif(path_elements[0] == "L"):
             print("LINETO - Zeichnen einer Geraden")
@@ -71,7 +72,6 @@ def machePath(path_elements):
             laufeZurueck()
             print(startZx + "," + startZy)
             path_elements = path_elements[1: len(path_elements)]
-            setzeStart(path_elements)
 
         else:
             print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
@@ -82,6 +82,7 @@ def machePath(path_elements):
             macheLine(path_elements[0: index])
 
             path_elements = path_elements[index: len(path_elements)]
+    print("")
     machePathListe()
 
 # speichert die Startposition, um diese für Z-Bewegungen zu nutzen
@@ -97,8 +98,12 @@ def setzeStart(string):
         startZy = pos[index: len(pos)]
     return
 
+# zurückkehren zur Startposition, nachdem 
 def laufeZurueck():
 #    hinzufügen StartZx, startZy
+    punkteX.append(startZx)
+    punkteY.append(startZy)
+    punkteCmd.append('L')
     return
 
 def indexNaechsterBuchstabe(string):

@@ -8,24 +8,6 @@
 	<line x1="0" y1="0" x2="820" y2="820" stroke="grey" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,5"></line>
 	<line x1="2030" y1="0" x2="820" y2="820" stroke="grey" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,5"></line>
 
-	<polyline 
-	points="
-		820,820
-		1100,820
-		1200,920
-		1100,1020
-		1100,820
-		820,1020
-		1100,1020
-		820,820
-		820,1020
-		"
-	stroke="green"
-	stroke-width="6"
-	stroke-linecap="round"
-	stroke-linejoin="round"
-	fill="none"
-	/>
 	<path 
 	d="M820,820
 		L1100,820 1200,920 1100,1020 1100,820 820,1020 1100,1020 820,820 820,1020

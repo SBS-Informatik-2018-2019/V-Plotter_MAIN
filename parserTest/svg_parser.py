@@ -132,19 +132,39 @@ def indexNaechsterBuchstabe(string):
 
 # Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
 def macheMove(moveCoords):
-    global punkteX
-    global punkteY
+    moveCoords = moveCoords + " "
     while len(moveCoords) != 0:
-        index= moveCoords.index(',')
-        punkteX = moveCoords[0: index]
+        moveCoords = moveCoords.lstrip()
+        # X- Koordinate auslesen
+        index = moveCoords.index(',')
+        punkteX.append(int(moveCoords[0: index]))
+        moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
         
-
+        # Y-Koordinate auslesen
+        index = moveCoords.index(' ')
+        punkteY.append(int(moveCoords[0: index]))
+        moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
+        
+        punkteCmd.append('M')
     return
 
 
 # Hinzufügen der Punkte eines Lineto-Befehls zu den globalen Listen X,Y & Cmd
 def macheLine(lineCoords):
-
+    lineCoords = lineCoords + " "
+    while len(lineCoords) != 0:
+        lineCoords = lineCoords.lstrip()
+        # X- Koordinate auslesen
+        index = lineCoords.index(',')
+        punkteX.append(int(lineCoords[0: index]))
+        lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
+        
+        # Y-Koordinate auslesen
+        index = lineCoords.index(' ')
+        punkteY.append(int(lineCoords[0: index]))
+        lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
+        
+        punkteCmd.append('L')
     return
 
 # Hinzufügen der Punkte einer konvertierten Kurve zu den globalen Listen X,Y & Cmd
@@ -154,8 +174,9 @@ def macheCurve(curveCoord):
 
 # Übergeben der linearen Liste von Punkten an der scaler
 def machePathListe():
-    print(startZx)
-    print(startZy)
+    print(punkteX)
+    print(punkteY)
+    print(punkteCmd)
     #goto scaler
     return
 

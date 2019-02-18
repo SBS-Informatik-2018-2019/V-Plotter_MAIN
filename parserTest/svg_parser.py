@@ -100,7 +100,6 @@ def setzeStart(string):
 
 # zurückkehren zur Startposition, nachdem 
 def laufeZurueck():
-#    hinzufügen StartZx, startZy
     punkteX.append(startZx)
     punkteY.append(startZy)
     punkteCmd.append('L')
@@ -129,11 +128,16 @@ def indexNaechsterBuchstabe(string):
         index = string.find('A', 0, index)
     if index > string.find('Z', 0, index) and string.find('Z', 0, index) > 0:
         index = string.find('Z', 0, index)
-    print(index)
     return index
 
 # Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
 def macheMove(moveCoords):
+    global punkteX
+    global punkteY
+    while len(moveCoords) != 0:
+        index= moveCoords.index(',')
+        punkteX = moveCoords[0: index]
+        
 
     return
 
@@ -178,5 +182,5 @@ def machePolylineListe(points):
         polylineCMDs.append("l")
         continue
     polylineCMDs.pop()
-    SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
+#    SCALER.scale(polylinePointsX, polylinePointsY, polylineCMDs)
     return

@@ -41,7 +41,7 @@ def initPosition(initX, initY):
     MOTOR.initLaenge(a, b)
     return
 
-#fährt den Schlitten in einer (fast) Geraden Liene zu Position (x,y)
+#fährt den Schlitten in einer (fast) graden Liene zu Position (x,y)
 def macheGerade(toX, toY):
     fromA = MOTOR.getActMotorLaengeA()
     fromB = MOTOR.getActMotorLaengeB()

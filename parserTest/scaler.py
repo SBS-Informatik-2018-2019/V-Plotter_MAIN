@@ -47,6 +47,7 @@ def scale(pointsX, pointsY, cmds):
         pointsY[i] = pointsY[i] + STARTY
     #print
     for i in range(len(pointsX)):
-        if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop")
+        if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop"):
+            return "stop"
     return
 

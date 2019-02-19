@@ -26,6 +26,7 @@ def getLaengeB(x, y):
     return math.sqrt(((L-x)*(L-x))+(y*y))
 
 def beta (a, b):
+    a = float(a)
     return math.acos (-(b * b - a * a - L * L) / (2 * a * L))
 
 # gib die x-Koordinate, wenn die linke Schnur a und die rechte b lang ist, zurück
@@ -72,18 +73,22 @@ def macheGerade(toX, toY):
 
 # cmd = m [MOVETO] oder l [LINETO]
 def fahre(toX, toY, cmd):
-    if((actCMD == "l") and (cmd == "l")):
+    global actCMD
+    cmd = cmd.lower()
+    actCMDpast = actCMD
+    actCMD = cmd
+    if((actCMDpast == "l") and (cmd == "l")):
         if (macheGerade(toX, toY) == "stop"):
             return "stop"
-    if((actCMD == "m") and (cmd == "m")):
+    if((actCMDpast == "m") and (cmd == "m")):
         if (macheGerade(toX, toY) == "stop"):
             return "stop"
-    if((actCMD == "l") and (cmd == "m")):
+    if((actCMDpast == "l") and (cmd == "m")):
         print("STIFT entfernen!")
         IO.aufOKWarten()
         if (macheGerade(toX, toY) == "stop"):
             return "stop"
-    if((actCMD == "m") and (cmd == "l")):
+    if((actCMDpast == "m") and (cmd == "l")):
         print("STIFT einlegen!")
         IO.aufOKWarten()
         if (macheGerade(toX, toY) == "stop"):

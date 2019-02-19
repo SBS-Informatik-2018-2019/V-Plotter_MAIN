@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 from time import sleep
 import svg_parser
+import scaler as SCALER
 
 if __name__ == "__main__":
     print("auf Antwort warten...")
@@ -10,6 +11,8 @@ if __name__ == "__main__":
     print("-> mit [Strg] + [C] beenden")
     sleep(2)
     print("-Viel Spass...")
-    svg_parser.parse_standart()
+    SCALER.initScale()
+    while(True):
+        svg_parser.parse_standart()
     
     

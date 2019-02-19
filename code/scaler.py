@@ -14,9 +14,12 @@ def initScale():
     
 #TODO: kommentar
 def scale(pointsX, pointsY, cmds):
+    print(pointsX)
+    print(pointsY)
+    print(cmds)
     #fix top left
-    sortpointsX = pointsX
-    sortpointsY = pointsY
+    sortpointsX = pointsX[:]
+    sortpointsY = pointsY[:]
     sortpointsX.sort()
     sortpointsY.sort()
     minx = sortpointsX[0]
@@ -47,6 +50,10 @@ def scale(pointsX, pointsY, cmds):
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] + STARTX
         pointsY[i] = pointsY[i] + STARTY
+	print("-->Scaled")
+    print(pointsX)
+    print(pointsY)
+    print(cmds)
     #print
     for i in range(len(pointsX)):
         if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop"):

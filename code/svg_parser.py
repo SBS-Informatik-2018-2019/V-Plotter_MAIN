@@ -48,60 +48,55 @@ def machePath(path_elements):
         path_elements = path_elements.lstrip()
 
         # ein Moveto bewegt nur den Plotter
-        if(path_elements[0] == "M"):
+        if(path_elements[0] == "M" or path_elements[0] == "m"):
             print("MOVETO - Bitte entfernen sie den Stift!")
-            path_elements = path_elements[1: len(path_elements)]
-            path_elements = path_elements.lstrip()
+            path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             macheMove(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
-            # der Startpunkt wird fÃ¼r das Z-Element gesetzt
+            # der Startpunkt wird für das Z-Element gesetzt
             setzeStart(path_elements)   #!!!!!!!
 
         # eine einfache Lineto wird gezeichnet
-        elif(path_elements[0] == "L"):
+        elif(path_elements[0] == "L" or path_elements[0] == "l"):
             print("LINETO - Zeichnen einer Geraden")
-            path_elements = path_elements[1: len(path_elements)]
-            path_elements = path_elements.lstrip()
+            path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             macheLine(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
         
         # H besitzt als Argument die x-Position der Geraden
-        elif(path_elements[0] == "H"):
+        elif(path_elements[0] == "H" or path_elements[0] == "h"):
             print("horLINETO - Zeichnen einer horizontalen Geraden")
-            path_elements = path_elements[1: len(path_elements)]
-            path_elements = path_elements.lstrip()
+            path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             laufeCoords(punkteX[len(punkteX)-1], path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
         # V besitzt als Argument die y-Position der Geraden
-        elif(path_elements[0] == "V"):
+        elif(path_elements[0] == "V" or path_elements[0] == "v"):
             print("verLINETO - Zeichnen einer vertikalen Geraden")
-            path_elements = path_elements[1: len(path_elements)]
-            path_elements = path_elements.lstrip()
+            path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             laufeCoords(path_elements[0: index], punkteY[len(punkteY)-1])
             path_elements = path_elements[index: len(path_elements)]
 
         # EIne Curve soll gezeichnet werden
-        elif(path_elements[0] == "C"):
+        elif(path_elements[0] == "C" or path_elements[0] == "c"):
             print("CURVETO - Zeichnen einer Curve")
-            path_elements = path_elements[1: len(path_elements)]
-            path_elements = path_elements.lstrip()
+            path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
-            macheLine(path_elements[0: index])  #Vereinfachung, Bezier-Bernstein-Approximation
+            macheCurve(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
         
-        # eine Zeichnung wird zum Startpunkt zurÃ¼ckgefÃ¼hrt
-        elif(path_elements[0] == "Z"):
-            print("ZurÃ¼cklauf - Zeichnen zurÃ¼ck zum Startpunkt")
+        # eine Zeichnung wird zum Startpunkt zurückgeführt
+        elif(path_elements[0] == "Z" or path_elements[0] == "z"):
+            print("Zurücklauf - Zeichnen zurück zum Startpunkt")
             laufeZurueck()
             print(startZx + "," + startZy)
             path_elements = path_elements[1: len(path_elements)]
@@ -109,43 +104,45 @@ def machePath(path_elements):
         # kein implementiertes Element/ unbekannter Character wird gelesen
         else:
             print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
-            path_elements = path_elements[1: len(path_elements)]
-            path_elements = path_elements.lstrip()
+            path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             print(path_elements[0: index])
             macheLine(path_elements[0: index])
+
             path_elements = path_elements[index: len(path_elements)]
     print("")
     machePathListe()
 
-# speichert die Startposition, um diese fÃ¼r Z-Bewegungen zu nutzen
+# speichert die Startposition, um diese für Z-Bewegungen zu nutzen
 def setzeStart(string):
-    if(string != ""):
+    if(len(string) != 0):
         global startZx
         global startZy
         #Startposition
-        index = indexNaechsterBuchstabe(string[1: len(string)])
+        index = string.index(' ') #Wenn die Anfangskoordianten teil eines größeren durch Leerzeichen getrennten Elements sind
         pos = string[1: index]
-        index = string.index(',')
-        startZx = pos[0: index-1]
-        startZy = pos[index: len(pos)]
+        print(pos)
+        index = string.index(' ')
+        startZx = float(pos[0: index-1])
+        startZy = float(pos[index+1: len(pos)])
+        print(startZx + " " + startZy)
     return
 
-# Bewegung zu zwei Koordinaten wird durchgefÃ¼hrt
+# Bewegung zu zwei Koordinaten wird durchgeführt
 def laufeCoords(x, y):
     punkteX.append(float(x))
     punkteY.append(float(y))
     punkteCmds.append('L')
     return
 
-# zurÃ¼ckkehren zur Startposition, nachdem 
+# zurückkehren zur Startposition, nachdem 
 def laufeZurueck():
     punkteX.append(float(startZx))
     punkteY.append(float(startZy))
     punkteCmds.append('L')
     return
 
-# der nÃ¤chste Character wird gefunden
+# der nächste Character wird gefunden
 def indexNaechsterBuchstabe(string):
     index = len(string)
     string = string.lstrip()
@@ -169,15 +166,35 @@ def indexNaechsterBuchstabe(string):
         index = string.find('A', 0, index)
     if index > string.find('Z', 0, index) and string.find('Z', 0, index) > 0:
         index = string.find('Z', 0, index)
+    if index > string.find('m', 0, index) and string.find('m', 0, index) > 0:
+        index = string.find('m', 0, index)
+    if index > string.find('l', 0, index) and string.find('l', 0, index) > 0:
+        index = string.find('l', 0, index)
+    if index > string.find('h', 0, index) and string.find('h', 0, index) > 0:
+        index = string.find('h', 0, index)
+    if index > string.find('v', 0, index) and string.find('v', 0, index) > 0:
+        index = string.find('v', 0, index)
+    if index > string.find('c', 0, index) and string.find('c', 0, index) > 0:
+        index = string.find('c', 0, index)
+    if index > string.find('s', 0, index) and string.find('s', 0, index) > 0:
+        index = string.find('s', 0, index)
+    if index > string.find('q', 0, index) and string.find('q', 0, index) > 0:
+        index = string.find('q', 0, index)
+    if index > string.find('t', 0, index) and string.find('t', 0, index) > 0:
+        index = string.find('t', 0, index)
+    if index > string.find('a', 0, index) and string.find('a', 0, index) > 0:
+        index = string.find('a', 0, index)
+    if index > string.find('z', 0, index) and string.find('z', 0, index) > 0:
+        index = string.find('z', 0, index)
     return index
 
-# HinzufÃ¼gen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
+# Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
 def macheMove(moveCoords):
     moveCoords = moveCoords + " "
     while len(moveCoords) != 0:
         moveCoords = moveCoords.lstrip()
         # X- Koordinate auslesen
-        index = moveCoords.index(',')
+        index = moveCoords.index(' ')
         punkteX.append(float(moveCoords[0: index]))
         moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
         
@@ -189,13 +206,14 @@ def macheMove(moveCoords):
         punkteCmds.append('M')
     return
 
-# HinzufÃ¼gen der Punkte eines Lineto-Befehls zu den globalen Listen X,Y & Cmd
+
+# Hinzufügen der Punkte eines Lineto-Befehls zu den globalen Listen X,Y & Cmd
 def macheLine(lineCoords):
     lineCoords = lineCoords + " "
     while len(lineCoords) != 0:
         lineCoords = lineCoords.lstrip()
         # X- Koordinate auslesen
-        index = lineCoords.index(',')
+        index = lineCoords.index(' ')
         punkteX.append(float(lineCoords[0: index]))
         lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
         
@@ -207,12 +225,45 @@ def macheLine(lineCoords):
         punkteCmds.append('L')
     return
 
-# HinzufÃ¼gen der Punkte einer konvertierten Kurve zu den globalen Listen X,Y & Cmd
+# Hinzufügen der Punkte einer konvertierten Kurve zu den globalen Listen X,Y & Cmd
 def macheCurve(curveCoord):
-    
+    curveCoord = curveCoord + " "
+    while len(curveCoord) != 0:
+        curveCoord = curveCoord.lstrip()
+        # X1-Koordinate errechnen
+        index = curveCoord.index(' ')
+        punkteX.append(punkteX[len(punkteX)-1]+float(curveCoord[0: index]))
+        curveCoord = curveCoord[index+1: len(curveCoord)].lstrip()
+        
+        # Y1-Koordinate errechnen
+        index = curveCoord.index(' ')
+        punkteY.append(punkteY[len(punkteY)-1]+float(curveCoord[0: index]))
+        curveCoord = curveCoord[index+1: len(curveCoord)].lstrip()
+        
+        # X2-Koordinate errechnen
+        index = curveCoord.index(' ')
+        punkteX.append(punkteX[len(punkteX)-1]+float(curveCoord[0: index]))
+        curveCoord = curveCoord[index+1: len(curveCoord)].lstrip()
+        
+        # Y2-Koordinate errechnen
+        index = curveCoord.index(' ')
+        punkteY.append(punkteY[len(punkteY)-1]+float(curveCoord[0: index]))
+        curveCoord = curveCoord[index+1: len(curveCoord)].lstrip()
+        
+        # X-Koordinate einfügen
+        index = curveCoord.index(' ')
+        punkteX.append(float(curveCoord[0: index]))
+        curveCoord = curveCoord[index+1: len(curveCoord)].lstrip()
+        
+        # Y-Koordinate einfügen
+        index = curveCoord.index(' ')
+        punkteY.append(float(curveCoord[0: index]))
+        curveCoord = curveCoord[index+1: len(curveCoord)].lstrip()
+        
+        punkteCmds.append('L')
     return
 
-# Ãœbergeben der linearen Liste von Punkten an der scaler
+# Übergeben der linearen Liste von Punkten an der scaler
 def machePathListe():
     print(punkteX)
     print(punkteY)

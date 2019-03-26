@@ -35,9 +35,17 @@ def scale(pointsX, pointsY, cmds):
     sortpointsY.sort()
     sortpointsY.reverse()
     maxx = sortpointsX[0]
+    if(maxx == 0):
+        maxx = 1;
     maxy = sortpointsY[0]
-    scalerX = groesseX / maxx
-    scalerY = groesseY / maxy
+    if(maxx == 0):
+        scalerX = 99999999999999
+    else:
+        scalerX = groesseX / maxx
+    if(maxy == 0):
+        scalerY = 99999999999999
+    else:
+        scalerY = groesseY / maxy
     scaler = 0
     if(scalerX > scalerY):
         scaler = scalerY
@@ -50,7 +58,7 @@ def scale(pointsX, pointsY, cmds):
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] + STARTX
         pointsY[i] = pointsY[i] + STARTY
-	print("-->Scaled")
+    print("-->Scaled")
     print(pointsX)
     print(pointsY)
     print(cmds)

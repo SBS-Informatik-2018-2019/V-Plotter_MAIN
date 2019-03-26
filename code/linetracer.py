@@ -62,6 +62,9 @@ def macheGerade(toX, toY):
     for i in range(schritte):
         x = (fromX + i*wegX/schritte)
         y = (fromY + i*wegY/schritte)
+        fileTest = open("file_test.txt", "a")
+        fileTest.write(str(x) + "," + str(y) + " \n")
+        fileTest.close()
         a = getLaengeA(x, y)
         b = getLaengeB(x, y)
         if(MOTOR.setLaenge(a, b)=="stop"):

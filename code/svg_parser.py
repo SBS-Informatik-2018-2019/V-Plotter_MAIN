@@ -9,10 +9,17 @@ nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 punkteX = list()
 punkteY = list()
 punkteCmds = list()
-
 startZx = 0
 startZy = 0
 #END VARIABLES####################################
+
+# initialisiert alle Attribute des Parsers neu
+def initParser():
+    punkteX = list()
+    punkteY = list()
+    punkteCmds = list()
+    startZx = 0
+    startZy = 0
 
 # nimmt eine Datei an, um angegebene Datei zu drucken
 def parse(file):
@@ -56,7 +63,7 @@ def machePath(path_elements):
             macheMove(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
             # der Startpunkt wird für das Z-Element gesetzt
-            setzeStart(path_elements)   #!!!!!!!
+            #setzeStart(path_elements)   #!!!!!!!
 
         # eine einfache Lineto wird gezeichnet
         elif(path_elements[0] == "L" or path_elements[0] == "l"):
@@ -67,7 +74,7 @@ def machePath(path_elements):
             macheLine(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
         
-        # H besitzt als Argument die x-Position der Geraden
+        # H ist eine horizontale Linie; besitzt als Argument die x-Position der Geraden
         elif(path_elements[0] == "H" or path_elements[0] == "h"):
             print("horLINETO - Zeichnen einer horizontalen Geraden")
             path_elements = path_elements[1: len(path_elements)].lstrip()
@@ -76,7 +83,7 @@ def machePath(path_elements):
             laufeCoords(punkteX[len(punkteX)-1], path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
 
-        # V besitzt als Argument die y-Position der Geraden
+        # V ist eine vertikale Linie; besitzt als Argument die y-Position der Geraden
         elif(path_elements[0] == "V" or path_elements[0] == "v"):
             print("verLINETO - Zeichnen einer vertikalen Geraden")
             path_elements = path_elements[1: len(path_elements)].lstrip()

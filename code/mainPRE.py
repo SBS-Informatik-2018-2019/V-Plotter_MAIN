@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from time import sleep
-import svg_parser
-import scaler as SCALER
+import svg_parserPRE as svg_parser
+import scalerPRE as SCALER
 
 if __name__ == "__main__":
     SCALER.initScale()

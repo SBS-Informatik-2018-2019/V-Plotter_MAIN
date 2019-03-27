@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 import math
 import time
-import plotterio as IO
+import plotterioPRE as IO
 
 #VARIABLES#######################################
 minSchritt = 1 # auflösung der greraden

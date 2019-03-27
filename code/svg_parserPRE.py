@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 import xml.etree.ElementTree as ET
-import scaler as SCALER
+import scalerPRE as SCALER
 
 #VARIABLES#######################################
 FILE="file.svg" #name der standart datei
@@ -105,9 +105,9 @@ def machePath(path_elements):
         elif(path_elements[0] == "Z" or path_elements[0] == "z"):
             print("Zurücklauf - Zeichnen zurück zum Startpunkt")
             #laufeZurueck()
-            print(str(startZx) + "," + str(startZy))
+            print(startZx + "," + startZy)
             path_elements = path_elements[1: len(path_elements)]
-            macheLine("0 0")
+			 macheLine("0 0")
         # kein implementiertes Element/ unbekannter Character wird gelesen
         else:
             print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
@@ -126,7 +126,7 @@ def setzeStart(string):
         global startZx
         global startZy
         #Startposition
-        index = string.index(' ') #Wenn die Anfangskoordinaten teil eines größeren durch Leerzeichen getrennten Elements sind
+        index = string.index(' ') #Wenn die Anfangskoordianten teil eines größeren durch Leerzeichen getrennten Elements sind
         pos = string[1: index]
         print(pos)
         index = string.index(' ')

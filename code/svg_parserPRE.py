@@ -15,9 +15,10 @@ startZy = 0
 
 # initialisiert alle Attribute des Parsers neu
 def initParser():
-    punkteX = list()
-    punkteY = list()
-    punkteCmds = list()
+    empty = list()
+    punkteX = empty
+    punkteY = empty
+    punkteCmds = empty
     startZx = 0
     startZy = 0
 
@@ -63,7 +64,7 @@ def machePath(path_elements):
             macheMove(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
             # der Startpunkt wird für das Z-Element gesetzt
-            #setzeStart(path_elements)   #!!!!!!!
+            #setzeStart(path_elements[1: len(path_elements)])   #!!!!!!!
 
         # eine einfache Lineto wird gezeichnet
         elif(path_elements[0] == "L" or path_elements[0] == "l"):
@@ -107,7 +108,7 @@ def machePath(path_elements):
             #laufeZurueck()
             print(startZx + "," + startZy)
             path_elements = path_elements[1: len(path_elements)]
-			 macheLine("0 0")
+             macheLine("0 0")
         # kein implementiertes Element/ unbekannter Character wird gelesen
         else:
             print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
@@ -126,10 +127,11 @@ def setzeStart(string):
         global startZx
         global startZy
         #Startposition
+        string = string.lstrip()
         index = string.index(' ') #Wenn die Anfangskoordianten teil eines größeren durch Leerzeichen getrennten Elements sind
         pos = string[1: index]
         print(pos)
-        index = string.index(' ')
+        index = string.index(',')
         startZx = float(pos[0: index-1])
         startZy = float(pos[index+1: len(pos)])
         print(startZx + " " + startZy)

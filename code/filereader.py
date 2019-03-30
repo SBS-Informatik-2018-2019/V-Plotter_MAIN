@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import os.path as OSPATH
 import sys as SYS
 import tokenizer as TOKER
-import pathpaser as PP
+import pathparser as PP
 import polylineparser as PLP
 
 #VARIABLES#######################################
@@ -30,15 +30,19 @@ def svgLesen():
             SYS.exit("[WARN]: in File:" + SVG_FILE + " wurde kein Path oder Polyline gefunden!")
     else:
         SYS.exit("[WARN]: File: " + SVG_FILE + " konnte nicht gefunden werden!")
+    return
+
 def tokensLesen():
     if(OSPATH.exists(TOKEN_FILE)):
         file = open(TOKEN_FILE, "rt")
         typ = file.readline()
-        if(typ == "is_polyline"):
+        if(typ.startswith("is_polyline")):
             PLP.parse(file)
-        elif(typ == "is_path"):
+        elif(typ.startswith("is_path")):
             PP.parse(file)
         else:
             SYS.exit("[WARN]: File: " + TOKEN_FILE + " ist korrupt!")
+        file.close()
     else:
         SYS.exit("[WARN]: File: " + TOKEN_FILE + " konnte nicht gefunden werden!")
+    return

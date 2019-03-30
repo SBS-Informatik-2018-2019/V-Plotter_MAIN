@@ -1,3 +1,4 @@
 .vscode/
 *.pyc
+*.vplotter
 */__pycache__/*

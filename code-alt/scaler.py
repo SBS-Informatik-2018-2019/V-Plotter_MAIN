@@ -1,7 +1,5 @@
 #-*- coding: utf-8 -*-
 import linetracer as LT
-import datetime
-
 
 #VARIABLES#######################################
 STARTX = 800 # Obere linke Ecke des Zeichenbereichs
@@ -11,21 +9,14 @@ groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
 
 #TODO: kommentar
-def init():
+def initScale():
     LT.initPosition(STARTX, STARTY)
     
 #TODO: kommentar
-def scale(linefile):
-    pointsX = list()
-    pointsY = list()
-    cmds = list()
-    line = linefile.readline().strip("\n").strip()
-    while(line):
-        split = line.split(" ")
-        cmds.append(split[0])
-        pointsX.append(float(split[1]))
-        pointsY.append(float(split[2]))
-        line = linefile.readline().strip("\n").strip()
+def scale(pointsX, pointsY, cmds):
+    print(pointsX)
+    print(pointsY)
+    print(cmds)
     #fix top left
     sortpointsX = pointsX[:]
     sortpointsY = pointsY[:]
@@ -45,7 +36,7 @@ def scale(linefile):
     sortpointsY.reverse()
     maxx = sortpointsX[0]
     if(maxx == 0):
-        maxx = 1
+        maxx = 1;
     maxy = sortpointsY[0]
     if(maxx == 0):
         scalerX = 99999999999999
@@ -67,16 +58,13 @@ def scale(linefile):
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] + STARTX
         pointsY[i] = pointsY[i] + STARTY
-
+    print("-->Scaled")
+    print(pointsX)
+    print(pointsY)
+    print(cmds)
     #print
-    file = open("print.vplotter", "wt")
-    file.write("print from:" + str(datetime.datetime.now()))
-    file.close()
-    file = open("print.vplotter", "at")
     for i in range(len(pointsX)):
-        file.write(str(pointsX[i]) + "," + str(pointsY[i]) + "," + str(cmds[i]))
         if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop"):
             return "stop"
-    file.close()
     return
 

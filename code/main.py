@@ -11,6 +11,11 @@ if __name__ == "__main__":
     FILER.svgLesen()
     sleep(2)
     print("[SYS]: fertig")
+    print("[SYS]: Tokens lesen und in Koordinaten umwandeln")
+    FILER.tokensLesen()
+    sleep(2)
+    print("[SYS]: fertig")
+
     print("[SYS]: Motorbewegungen vorbereiten...")
     #TODO
     sleep(2)

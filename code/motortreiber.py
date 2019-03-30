@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from time import sleep
 import threading
-import plotterio as IO
+import plotterioPRE as IO
 
 #VARIABLES#######################################
 Tmin = 0.005 #zum langsamer machen der motoeren, mindestens 0.001

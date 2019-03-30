@@ -5,10 +5,12 @@ import sys as SYS
 import tokenizer as TOKER
 import pathparser as PP
 import polylineparser as PLP
+import scaler as SCL
 
 #VARIABLES#######################################
 SVG_FILE = "file.svg"
 TOKEN_FILE = "tokens.vplotter"
+LINES_FILE = "lines.vplotter"
 nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 #END VARIABLES####################################
 
@@ -45,4 +47,13 @@ def tokensLesen():
         file.close()
     else:
         SYS.exit("[WARN]: File: " + TOKEN_FILE + " konnte nicht gefunden werden!")
+    return
+
+def linesLesen():
+    if(OSPATH.exists(LINES_FILE)):
+        file = open(LINES_FILE, "rt")
+        SCL.scale(file)
+        file.close()
+    else:
+        SYS.exit("[WARN]: File: " + LINES_FILE + " konnte nicht gefunden werden!")
     return

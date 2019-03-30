@@ -9,14 +9,21 @@ groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
 
 #TODO: kommentar
-def initScale():
+def init():
     LT.initPosition(STARTX, STARTY)
     
 #TODO: kommentar
-def scale(pointsX, pointsY, cmds):
-    print(pointsX)
-    print(pointsY)
-    print(cmds)
+def scale(linefile):
+    pointsX = list()
+    pointsY = list()
+    cmds = list()
+    line = linefile.readline().strip("\n").strip()
+    while(line):
+        split = line.split(" ")
+        cmds.append(split[0])
+        pointsX.append(float(split[1]))
+        pointsY.append(float(split[2]))
+        line = linefile.readline().strip("\n").strip()
     #fix top left
     sortpointsX = pointsX[:]
     sortpointsY = pointsY[:]
@@ -58,10 +65,7 @@ def scale(pointsX, pointsY, cmds):
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] + STARTX
         pointsY[i] = pointsY[i] + STARTY
-    print("-->Scaled")
-    print(pointsX)
-    print(pointsY)
-    print(cmds)
+
     #print
     for i in range(len(pointsX)):
         if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop"):

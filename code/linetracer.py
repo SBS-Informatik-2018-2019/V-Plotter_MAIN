@@ -2,7 +2,7 @@
 import math
 import time
 import motortreiber as MOTOR
-import plotterio as IO
+import plotterioPRE as IO
 
 #VARIABLES#######################################
 minSchritt = 1 # auflösung der greraden

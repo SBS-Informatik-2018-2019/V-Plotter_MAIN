@@ -6,6 +6,7 @@ import tokenizer as TOKER
 
 #VARIABLES#######################################
 SVG_FILE = "file.svg"
+TOKEN_FILE = "tokens.vplotter"
 nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 #END VARIABLES####################################
 
@@ -18,7 +19,6 @@ def svgLesen():
             pathElement = svgRootElement.find("svgNs:path", nameSpace)
             path = pathElement.get('d')
             TOKER.tokenize_path(path)
-
         # Anders wird eine Polyline eingelesen
         elif (svgRootElement.find("svgNs:polyline", nameSpace) != None):
             polylineElement = svgRootElement.find("svgNs:polyline", nameSpace)
@@ -26,6 +26,11 @@ def svgLesen():
             TOKER.tokenize_polyline(points)
         else:
             SYS.exit("[WARN]: in File:" + SVG_FILE + " wurde kein Path oder Polyline gefunden!")
-
     else:
-        SYS.exit("[WARN]: File:" + SVG_FILE + " konnte nicht gefunden werden!")
+        SYS.exit("[WARN]: File: " + SVG_FILE + " konnte nicht gefunden werden!")
+def tokensLesen():
+    if(OSPATH.exists(TOKEN_FILE)):
+        file = open(TOKEN_FILE, "rt")
+        file.readline()
+    else:
+        SYS.exit("[WARN]: File: " + TOKEN_FILE + " konnte nicht gefunden werden!")

@@ -36,7 +36,7 @@ def scale(pointsX, pointsY, cmds):
     sortpointsY.reverse()
     maxx = sortpointsX[0]
     if(maxx == 0):
-        maxx = 1;
+        maxx = 1
     maxy = sortpointsY[0]
     if(maxx == 0):
         scalerX = 99999999999999

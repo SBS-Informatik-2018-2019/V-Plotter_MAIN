@@ -12,6 +12,7 @@ def tokenize_path(pathdef):
     file.close()
     file = open(TOKEN_FILE, "at")
     for token in tokens:
+        token = str(token)
         token = token.upper()
         file.write(token + "\n")
     file.close()
@@ -34,6 +35,7 @@ def tokenize_polyline(points):
     file.close()
     file = open(TOKEN_FILE, "at")
     for token in tokens:
+        token = str(token)
         token = token.upper()
         file.write(token + "\n")
     file.close()

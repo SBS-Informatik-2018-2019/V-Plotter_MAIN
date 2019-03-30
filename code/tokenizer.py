@@ -8,7 +8,7 @@ TOKEN_FILE = "tokens.vplotter"
 def tokenize_path(pathdef):
     tokens = tokenize_path_replace(pathdef)
     file = open(TOKEN_FILE, "wt")
-    file.write("is_path!\n")
+    file.write("is_path\n")
     file.close()
     file = open(TOKEN_FILE, "at")
     for token in tokens:
@@ -31,7 +31,7 @@ def tokenize_path_replace(pathdef):
 def tokenize_polyline(points):
     tokens = tokenize_polyline_replace(points)
     file = open(TOKEN_FILE, "wt")
-    file.write("is_polyline!\n")
+    file.write("is_polyline\n")
     file.close()
     file = open(TOKEN_FILE, "at")
     for token in tokens:

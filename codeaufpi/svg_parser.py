@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import scaler as SCALER
 
 #VARIABLES#######################################
-FILE="beispiele/file.svg" #name der standart datei
+FILE="dateien/hausnikolaus.svg" #name der standart datei
 nameSpace={'svgNs':'http://www.w3.org/2000/svg'}
 
 punkteX = list()
@@ -16,6 +16,11 @@ startZy = 0
 
 # initialisiert alle Attribute des Parsers neu
 def initParser():
+    global punkteX
+    global punkteY
+    global punkteCmd
+    global startZx
+    global startZy
     punkteX = list()
     punkteY = list()
     punkteCmds = list()
@@ -138,6 +143,9 @@ def setzeStart(string):
 
 # Bewegung zu zwei Koordinaten wird durchgeführt
 def laufeCoords(x, y):
+    global punkteX
+    global punkteY
+    global punkteCmd
     punkteX.append(float(x))
     punkteY.append(float(y))
     punkteCmds.append('L')
@@ -145,12 +153,15 @@ def laufeCoords(x, y):
 
 # zurückkehren zur Startposition, nachdem 
 def laufeZurueck():
+    global punkteX
+    global punkteY
+    global punkteCmd
     punkteX.append(float(startZx))
     punkteY.append(float(startZy))
     punkteCmds.append('L')
     return
 
-# der nächste Character wird gefunden
+# der nächste Character wird gesucht und sein Index zurückgegeben
 def indexNaechsterBuchstabe(string):
     index = len(string)
     string = string.lstrip()
@@ -198,6 +209,9 @@ def indexNaechsterBuchstabe(string):
 
 # Hinzufügen der Punkte eines Moveto-Befehls zu den globalen Listen X,Y & Cmd
 def macheMove(moveCoords):
+    global punkteX
+    global punkteY
+    global punkteCmd
     moveCoords = moveCoords + " "
     while len(moveCoords) != 0:
         moveCoords = moveCoords.lstrip()
@@ -287,7 +301,7 @@ def machePolylineListe(points):
     polylinePointsY = list()
     polylineCMDs = list(("m"))
     while len(points) != 0:
-        # separate xpolynext and ypolynext coord from points
+        # Trennen der x und y Koordinaten der Polyline von den "points"
         points = points.lstrip()
         index = points.index(',')
         polyNextX = float(points[0:index])

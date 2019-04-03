@@ -15,6 +15,9 @@ if __name__ == "__main__":
         sleep(2)
         print("-Viel Spass...")
         svg_parser.initParser()
+        print("welche Datei soll gedruckt werden?")
+        filepath = raw_input("Dateiname:")
+        
         svg_parser.parse_standart()
         print("Druck fertig###########################################")
         print("Noch mal selbe Datei drucken ?")

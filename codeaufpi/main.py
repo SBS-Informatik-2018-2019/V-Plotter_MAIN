@@ -17,8 +17,9 @@ if __name__ == "__main__":
         svg_parser.initParser()
         print("welche Datei soll gedruckt werden?")
         filepath = raw_input("Dateiname:")
-        
-        svg_parser.parse_standart()
+        if(!filepath.endswith(".svg")):
+            filepath += ".svg"
+        svg_parser.parse(filepath)
         print("Druck fertig###########################################")
         print("Noch mal selbe Datei drucken ?")
         IO.aufOKWarten()

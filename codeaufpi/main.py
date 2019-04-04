@@ -63,7 +63,9 @@ def drucken():
     drucken()
     return
 
-
+# Der Einstiegspunkt des Programmes
 if __name__ == "__main__":
+    print("Bitte Schlitten auf 800,800 bringen!")
+    sleep(4)
     SCALER.initScale()
     drucken()

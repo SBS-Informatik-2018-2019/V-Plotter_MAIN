@@ -62,7 +62,6 @@ def machePath(path_elements):
 
         # ein Moveto bewegt nur den Plotter
         if(path_elements[0] == "M" or path_elements[0] == "m"):
-            #print("MOVETO - Bitte entfernen sie den Stift!")
             path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
            # print(path_elements[0: index])
@@ -73,7 +72,6 @@ def machePath(path_elements):
 
         # eine einfache Lineto wird gezeichnet
         elif(path_elements[0] == "L" or path_elements[0] == "l"):
-            #print("LINETO - Zeichnen einer Geraden")
             path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             #print(path_elements[0: index])
@@ -82,7 +80,6 @@ def machePath(path_elements):
         
         # H ist eine horizontale Linie; besitzt als Argument die x-Position der Geraden
         elif(path_elements[0] == "H" or path_elements[0] == "h"):
-            #print("horLINETO - Zeichnen einer horizontalen Geraden")
             path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             #print(path_elements[0: index])
@@ -91,20 +88,20 @@ def machePath(path_elements):
 
         # V ist eine vertikale Linie; besitzt als Argument die y-Position der Geraden
         elif(path_elements[0] == "V" or path_elements[0] == "v"):
-            #print("verLINETO - Zeichnen einer vertikalen Geraden")
             path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             #print(path_elements[0: index])
             laufeCoords(path_elements[0: index], punkteY[len(punkteY)-1])
             path_elements = path_elements[index: len(path_elements)]
 
-        # EIne Curve soll gezeichnet werden
+        # Eine Curve soll gezeichnet werden
         elif(path_elements[0] == "C" or path_elements[0] == "c"):
             #print("CURVETO - Zeichnen einer Curve")
             path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
             #print(path_elements[0: index])
-            macheCurve(path_elements[0: index])
+            #macheCurve(path_elements[0: index])
+            macheLine(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
         
         # eine Zeichnung wird zum Startpunkt zurückgeführt
@@ -135,7 +132,7 @@ def setzeStart(string):
         index = string.index(' ') #Wenn die Anfangskoordinaten teil eines größeren durch Leerzeichen getrennten Elements sind
         pos = string[1: index]
         #print(pos)
-        index = string.index(' ')
+        index = string.index(',')
         startZx = float(pos[0: index-1])
         startZy = float(pos[index+1: len(pos)])
         #print(startZx + " " + startZy)
@@ -216,7 +213,7 @@ def macheMove(moveCoords):
     while len(moveCoords) != 0:
         moveCoords = moveCoords.lstrip()
         # X- Koordinate auslesen
-        index = moveCoords.index(' ')
+        index = moveCoords.index(',')
         punkteX.append(float(moveCoords[0: index]))
         moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
         
@@ -235,7 +232,7 @@ def macheLine(lineCoords):
     while len(lineCoords) != 0:
         lineCoords = lineCoords.lstrip()
         # X- Koordinate auslesen
-        index = lineCoords.index(' ')
+        index = lineCoords.index(',')
         punkteX.append(float(lineCoords[0: index]))
         lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
         

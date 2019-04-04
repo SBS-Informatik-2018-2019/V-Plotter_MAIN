@@ -32,7 +32,7 @@ def parse(file):
     return
 
 # druckt Standartdatei
-def parse_standart():
+def parse_s():
     global FILE
     svgLesen(FILE)
     return
@@ -61,10 +61,9 @@ def machePath(path_elements):
 
         # ein Moveto bewegt nur den Plotter
         if(path_elements[0] == "M" or path_elements[0] == "m"):
-            #print("MOVETO - Bitte entfernen sie den Stift!")
             path_elements = path_elements[1: len(path_elements)].lstrip()
+            # Die Koordinaten stehen vor dem naechsten Buchstaben
             index = indexNaechsterBuchstabe(path_elements)
-           # print(path_elements[0: index])
             macheMove(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
             # der Startpunkt wird für das Z-Element gesetzt
@@ -72,10 +71,8 @@ def machePath(path_elements):
 
         # eine einfache Lineto wird gezeichnet
         elif(path_elements[0] == "L" or path_elements[0] == "l"):
-            #print("LINETO - Zeichnen einer Geraden")
             path_elements = path_elements[1: len(path_elements)].lstrip()
             index = indexNaechsterBuchstabe(path_elements)
-            #print(path_elements[0: index])
             macheLine(path_elements[0: index])
             path_elements = path_elements[index: len(path_elements)]
         
@@ -112,7 +109,7 @@ def machePath(path_elements):
             #laufeZurueck()
             #print(str(startZx) + "," + str(startZy))
             path_elements = path_elements[1: len(path_elements)]
-            macheLine("0 0")
+            macheLine("0,0")
         # kein implementiertes Element/ unbekannter Character wird gelesen
         else:
             #print("Kein bekanntes Element! - Zeichnen einer Gerade durch alle Argumente")
@@ -150,7 +147,7 @@ def laufeCoords(x, y):
     punkteCmds.append('L')
     return
 
-# zurückkehren zur Startposition, nachdem 
+# Zurückkehren zur Startposition, wird in die Liste eingefügt
 def laufeZurueck():
     global punkteX
     global punkteY
@@ -215,7 +212,7 @@ def macheMove(moveCoords):
     while len(moveCoords) != 0:
         moveCoords = moveCoords.lstrip()
         # X- Koordinate auslesen
-        index = moveCoords.index(' ')
+        index = moveCoords.index(',')
         punkteX.append(float(moveCoords[0: index]))
         moveCoords = moveCoords[index+1: len(moveCoords)].lstrip()
         
@@ -234,7 +231,7 @@ def macheLine(lineCoords):
     while len(lineCoords) != 0:
         lineCoords = lineCoords.lstrip()
         # X- Koordinate auslesen
-        index = lineCoords.index(' ')
+        index = lineCoords.index(',')
         punkteX.append(float(lineCoords[0: index]))
         lineCoords = lineCoords[index+1: len(lineCoords)].lstrip()
         
@@ -286,10 +283,10 @@ def macheCurve(curveCoord):
 
 # Übergeben der linearen Liste von Punkten an der scaler
 def machePathListe():
-    #print(punkteX)
-    #print(punkteY)
-    #print(punkteCmds)
-    SCALER.scale(punkteX, punkteY, punkteCmds)
+    print(punkteX)
+    print(punkteY)
+    print(punkteCmds)
+   # SCALER.scale(punkteX, punkteY, punkteCmds)
     return
 
 
@@ -320,4 +317,4 @@ def machePolylineListe(points):
 
 if __name__ == "__main__":
     initParser()
-    parse_standart()
+    machePath("M200,220 L100,300 L102,209")

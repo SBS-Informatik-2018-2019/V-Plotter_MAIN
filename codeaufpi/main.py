@@ -10,7 +10,7 @@ lastfilepath = "" #do not edit
 #-------
 
 # Frage nach der Druckdatei im Ordner Dateien
-# Überprüfung, ob sie vorhanden ist und ggf Anhängen der Endung ".svg"
+# Ã¼berprÃ¼fung, ob sie vorhanden ist und ggf Anhï¿½ngen der Endung ".svg"
 def selectFile():
     print("welche Datei im Ordner Dateien/ soll gedruckt werden?")
     filepath = "dateien/" + raw_input("Dateiname:")
@@ -41,7 +41,7 @@ def nochmalDrucken():
         nochmalDrucken()
     return
 
-# main Loop für den Druckvorgang
+# main Loop fÃ¼r den Druckvorgang
 def drucken():
     global lastfilepath
     print("auf Antwort warten...")

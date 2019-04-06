@@ -87,9 +87,9 @@ def input(pin):
     else:
         return False
 
-# wartet solange (mind. 1,5sec) bis die Taste -OK- gedückt wurde. Dabei leuchted die grüne READY LED.
+# wartet solange (mind. 1sec) bis die Taste -OK- gedückt wurde. Dabei leuchted die grüne READY LED.
 def aufOKWarten():
-    sleep(1.5)
+    sleep(1)
     print("mit Taste -OK- bestätigen")
     no_input = True
     output(getREADY(), True)

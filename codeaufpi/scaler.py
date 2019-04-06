@@ -9,16 +9,13 @@ groesseY = 600 # Größe des Zeichenbereichs
 #END VARIABLES####################################
 
 
-#TODO: kommentar
+# gib dem Linetracer (LT) die Startkoordinaten
 def initScale():
     LT.initPosition(STARTX, STARTY)
     
-#TODO: kommentar
+# Scaliert auf die maximale Größe und verschiebt in dem Zeichenbereich
 def scale(pointsX, pointsY, cmds):
-    #print(pointsX)
-    #print(pointsY)
-    #print(cmds)
-    #fix top left
+    # die kleinsten Koordinaten werden abgezoden -> das Bild rückt nach oben links
     sortpointsX = pointsX[:]
     sortpointsY = pointsY[:]
     sortpointsX.sort()
@@ -28,7 +25,7 @@ def scale(pointsX, pointsY, cmds):
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] - minx
         pointsY[i] = pointsY[i] - miny
-    #scale to max
+    # finde die größten x und y Koordianten und berechne deren Scalierungsfaktor
     sortpointsX = list(pointsX)
     sortpointsY = list(pointsY)
     sortpointsX.sort()
@@ -36,18 +33,17 @@ def scale(pointsX, pointsY, cmds):
     sortpointsY.sort()
     sortpointsY.reverse()
     maxx = sortpointsX[0]
-    if(maxx == 0):
-        maxx = 1;
     maxy = sortpointsY[0]
     if(maxx == 0):
-        scalerX = 99999999999999
+        scalerX = 9.9e20 
     else:
         scalerX = groesseX / maxx
     if(maxy == 0):
-        scalerY = 99999999999999
+        scalerY = 9.9e20
     else:
         scalerY = groesseY / maxy
     scaler = 0
+    # der kleinere Scaler wird genommen damit das Bild nicht über den Rand hinaus geht
     if(scalerX > scalerY):
         scaler = scalerY
     else:
@@ -55,16 +51,13 @@ def scale(pointsX, pointsY, cmds):
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] * scaler
         pointsY[i] = pointsY[i] * scaler
-    #pushto drawarea
+    # das Bild wird in den Zeichenbereich geschoben
     for i in range(len(pointsX)):
         pointsX[i] = pointsX[i] + STARTX
         pointsY[i] = pointsY[i] + STARTY
-    #print("-->Scaled")
-    #print(pointsX)
-    #print(pointsY)
-    #print(cmds)
+    # die einzelenen Koordinaten werden mit Lienen abgefahren
     for i in range(len(pointsX)):
         if(LT.fahre(pointsX[i], pointsY[i], cmds[i]) == "stop"):
             return "stop"
-    return
+    return "fertig"
 

@@ -24,7 +24,7 @@ def initLaenge(a, b):
     actMotorLaengeA = round(a)
     actMotorLaengeB = round(b)
 
-# TODO: KOMMENTAR
+# fährt die Motoren, ausgehend von der akuellen Position, auf die vorgegebenen Längen
 def setLaenge(a, b):
     global actMotorLaengeA
     global actMotorLaengeB
@@ -52,10 +52,10 @@ def setLaenge(a, b):
         return "stop"
     return 0
 
-# TODO: KOMMENTAR
+# TODO: KOMMENTAR WOLF
 class motor (threading.Thread):
     
-    # TODO: KOMMENTAR
+    # TODO: KOMMENTAR WOLF
     def __init__(self, steps , Tmult , inv):
         threading.Thread.__init__(self)
         self.steps=steps
@@ -120,7 +120,7 @@ class motor (threading.Thread):
             IO.output(self.D, False)
             IO.output(self.A, False)
 
-        # TODO: KOMMENTAR
+        # TODO: KOMMENTAR WOLF
         if self.steps==0:
             return 0
         if self.steps > 0:

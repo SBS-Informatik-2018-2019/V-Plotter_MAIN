@@ -1,0 +1,20 @@
+
+path {
+    fill: none;
+    stroke: black;
+    stroke-width: 0.7;
+    stroke-dasharray: 0.5em, 0.1em;
+    width: 100%; 
+    height: auto;
+}
+
+polyline {
+    fill: none;
+    stroke: green;
+    stroke-width: 0.5;
+}
+
+textarea{
+    width: 90vw;
+    height: 10vh;
+}

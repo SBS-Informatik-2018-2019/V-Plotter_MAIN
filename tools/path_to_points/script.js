@@ -1,5 +1,5 @@
 
-var numPoints = 300;
+var numPoints = 350;
 
 
 var numbernode = document.getElementById("numbernode");

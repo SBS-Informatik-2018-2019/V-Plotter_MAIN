@@ -3,9 +3,11 @@ function run() {
     // selected numbers
     var numPointsPolyline = document.getElementById("numPointsPolyline").value;
     var numPointsPathSegment = document.getElementById("numPointsPathSegment").value;
+    var svgviewbox =  document.getElementById("svgviewBox").value;
+    document.getElementById("svg").setAttribute("viewBox", "0 0 " + svgviewbox + " " + svgviewbox);
 
 
-    // put path in list
+    // list to path
     var mytextareapathold = document.getElementById("mytextareapathold");
     document.getElementById("mypath").setAttribute("d", mytextareapathold.value);
 
@@ -33,13 +35,13 @@ function run() {
     var paths = [];
     paths = pathdata.split("M");
     var newpath = [];
-    console.log(paths);
+    
     for (var j = 1; j < paths.length; j++) {
         var element = paths[j];
         var pathdummy = document.getElementById("dummy");
         pathdummy.setAttribute("d", "M " + element);
         var pathDummyLength = pathdummy.getTotalLength();
-        console.log(pathdummy.getAttribute("d"));
+       
         var p = pathdummy.getPointAtLength(0.0000000001);
         newpath.push("M");
         newpath.push(p.x);

@@ -3,13 +3,20 @@ function run() {
     // selected numbers
     var numPointsPolyline = document.getElementById("numPointsPolyline").value;
     var numPointsPathSegment = document.getElementById("numPointsPathSegment").value;
-    var svgviewbox =  document.getElementById("svgviewBox").value;
+    var svgviewbox = document.getElementById("svgviewBox").value;
     document.getElementById("svg").setAttribute("viewBox", "0 0 " + svgviewbox + " " + svgviewbox);
-
-
     // list to path
     var mytextareapathold = document.getElementById("mytextareapathold");
     document.getElementById("mypath").setAttribute("d", mytextareapathold.value);
+    //create shareable link
+    var link1 = document.getElementById("link1");
+    var link2 = document.getElementById("link2");
+    var link = "https://redtechde.tk/pathcreator/?svb=" + svgviewbox + "&npp=" + numPointsPolyline + "&npps=" + numPointsPathSegment + "&d=" + encodeURI(mytextareapathold.value.replace("  ", " ").replace("\n",""));
+    link1.setAttribute("href", link);
+    link1.setAttribute("style", "display:auto;");
+    link2.setAttribute("value", link);
+
+
 
     // one polyline from the path
     var mypath = document.getElementById("mypath");
@@ -31,17 +38,18 @@ function run() {
 
     // path only with lines
     var mypath = document.getElementById("mypath");
-    var pathdata = mypath.getAttribute("d").toUpperCase();
+    var pathdata = mypath.getAttribute("d");
+    pathdata = pathdata.replace("m", "M");
     var paths = [];
     paths = pathdata.split("M");
     var newpath = [];
-    
+
     for (var j = 1; j < paths.length; j++) {
         var element = paths[j];
         var pathdummy = document.getElementById("dummy");
         pathdummy.setAttribute("d", "M " + element);
         var pathDummyLength = pathdummy.getTotalLength();
-        
+
         var p = pathdummy.getPointAtLength(0.0000000001);
         newpath.push("M");
         newpath.push(p.x + ",");
@@ -54,7 +62,7 @@ function run() {
             newpath.push(p.y);
             newpath.push("\n");
         }
-        
+
     }
     document.getElementById("dummy").removeAttribute("d")
     var newpathelement = document.getElementById("new");
@@ -65,7 +73,6 @@ function run() {
     newpath.push("' /></svg>")
     mytextareapathnew.innerHTML = newpath.join(" ");
 
-    //create shareable link
-    //TODO:
-    
+
+
 }

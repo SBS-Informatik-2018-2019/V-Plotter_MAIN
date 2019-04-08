@@ -8,9 +8,12 @@
         <title>V-Plotter Pathcreator - MAIN</title>
     </head>
     <body>
+        <script src="script.js"></script>
         <h1>V-Plotter Pathcreator</h1>
         <a href="choose.php">Templates</a>
-        <img src="l.gif" id="loading" style="display:none">
+        <a href="">Reload page</a>
+        <a href="index.php?clear">Clear page</a>
+        
         <table>
             <tr>
                 <th>Polyline</th>
@@ -24,14 +27,10 @@
             </tr>
             <tr>
                 <td>Number of Polylinepoints=<input type="number" id="numPointsPolyline" min="10"<?php if($_GET["npp"]){echo("value='".$_GET["npp"]."'");} ?>></td>
-                <script src="script.js" defer></script>
+                
                 <td>
                     Viewbox-Size=<input type="number" id="svgviewBox" <?php if($_GET["svb"]){echo("value='".$_GET["svb"]."'");} ?>>
-                    <input type="submit" onclick="
-                    document.getElementById('loading').setAttribute('style', 'display:block');
-                    run();
-                    document.getElementById('loading').setAttribute('style', 'display:none');
-                    ">
+                    <input type="submit" onclick="run();">
                 </td>
                 <td>Number per Path Segment=<input type="number" id="numPointsPathSegment" min="10" <?php if($_GET["npps"]){echo("value='".$_GET["npps"]."'");} ?>></td>
             </tr>

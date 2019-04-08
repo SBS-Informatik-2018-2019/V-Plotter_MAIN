@@ -24,8 +24,8 @@ function run() {
     }
     var mypolyline = document.getElementById("mypolyline");
     mypolyline.setAttribute("points", polinePoints.join(" "));
-    polinePoints.unshift("<polyline points='\n");
-    polinePoints.push("' />");
+    polinePoints.unshift("<svg xmlns='http://www.w3.org/2000/svg'><polyline points='\n");
+    polinePoints.push("' /></svg>");
     var mytextareapolyline = document.getElementById("mytextareapolyline");
     mytextareapolyline.innerHTML = polinePoints.join(" ");
 
@@ -41,16 +41,18 @@ function run() {
         var pathdummy = document.getElementById("dummy");
         pathdummy.setAttribute("d", "M " + element);
         var pathDummyLength = pathdummy.getTotalLength();
-       
+        
         var p = pathdummy.getPointAtLength(0.0000000001);
         newpath.push("M");
-        newpath.push(p.x);
+        newpath.push(p.x + ",");
         newpath.push(p.y);
+        newpath.push("\n");
         newpath.push("L");
         for (var i = 1; i < numPointsPathSegment; i++) {
             var p = pathdummy.getPointAtLength(i * pathDummyLength / numPointsPathSegment);
-            newpath.push(p.x);
+            newpath.push(p.x + ",");
             newpath.push(p.y);
+            newpath.push("\n");
         }
         
     }
@@ -58,11 +60,12 @@ function run() {
     var newpathelement = document.getElementById("new");
     newpathelement.setAttribute("d", newpath.join(" "))
 
-    newpath.unshift("<path d='")
+    newpath.unshift("<svg xmlns='http://www.w3.org/2000/svg'><path d='")
     var mytextareapathnew = document.getElementById("mytextareapathnew");
-    newpath.push("' />")
+    newpath.push("' /></svg>")
     mytextareapathnew.innerHTML = newpath.join(" ");
 
-
+    //create shareable link
+    //TODO:
     
 }

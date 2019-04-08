@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-<line x1="1" y1="800" x2="1400" y2="1"></line>
-<polyline points='
+    <line x1="1" x2="1400" y1="800" y2="1"/>
+    <polyline fill="none" stroke="green" stroke-linejoin="round" stroke-width="1" points="
  48.5 , 71.10416412353516 
  47.16856384277344 , 78.28770446777344 
  46.5093879699707 , 85.5655517578125 
@@ -301,7 +301,5 @@
  532.275146484375 , 207.53477478027344 
  539.5101928710938 , 208.5540008544922 
  546.6292724609375 , 207.9457550048828 
- ' 
- fill="none" stroke="green" stroke-width="1" stroke-linejoin="round">
-</polyline>
+ "/>
 </svg>

@@ -22,7 +22,7 @@ function run() {
     var mypath = document.getElementById("mypath");
     var pathLength = mypath.getTotalLength();
     var polinePoints = [];
-    for (var i = 0; i < numPointsPolyline; i++) {
+    for (var i = 0; i < numPointsPolyline+1; i++) {
         var p = mypath.getPointAtLength(i * pathLength / numPointsPolyline);
         polinePoints.push(p.x);
         polinePoints.push(",");
@@ -56,7 +56,7 @@ function run() {
         newpath.push(p.y);
         newpath.push("\n");
         newpath.push("L");
-        for (var i = 1; i < numPointsPathSegment; i++) {
+        for (var i = 1; i < numPointsPathSegment+1; i++) {
             var p = pathdummy.getPointAtLength(i * pathDummyLength / numPointsPathSegment);
             newpath.push(p.x + ",");
             newpath.push(p.y);

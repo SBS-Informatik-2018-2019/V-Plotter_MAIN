@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <link rel="stylesheet" href="style.css">
+    <title>V-Plotter Pathcreator - MAIN</title>
+</head>
+
+<body>
+    <script src="script.js"></script>
+    <h1>V-Plotter Pathcreator</h1>
+    <a href="" id="link1" style="display:none">Reload page</a>
+
+    <table>
+        <tr>
+            <th>Polyline</th>
+            <th>original Path data=</th>
+            <th>new Path (only L and M)</th>
+        </tr>
+        <tr>
+            <td><textarea id="mytextareapolyline" readonly></textarea></td>
+            <td><textarea id="mytextareapathold"></textarea></td>
+            <td><textarea id="mytextareapathnew" readonly></textarea></td>
+        </tr>
+        <tr>
+            <td>Number of Polylinepoints=<input type="number" id="numPointsPolyline" min="10">
+            </td>
+            <td>
+                Viewbox-Size=<input type="number" id="svgviewBox">
+                <input type="submit" onclick="run();">
+                <br><br>
+                Share: <input id="link2" readonly>
+            </td>
+            <td>Number per Path Segment=<input type="number" id="numPointsPathSegment" min="10">
+            </td>
+        </tr>
+        <tr>
+            <td>green</td>
+            <td>black</td>
+            <td>red</td>
+        </tr>
+    </table>
+    <svg xmlns="http://www.w3.org/2000/svg" id="svg">
+        <path id="mypath"></path>
+        <polyline id="mypolyline" points="" />
+        <path id="new"></path>
+        <path id="dummy"></path>
+    </svg>
+</body>
+
+</html>

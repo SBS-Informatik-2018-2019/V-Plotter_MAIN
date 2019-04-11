@@ -15,8 +15,9 @@
     <script src="script.js"></script>
     <h1>V-Plotter Pathcreator</h1>
     <a href="choose.php">Templates</a>
-    <a href="" id="link1" style="display:none">Reload page</a>
     <a href="index.php?clear">Clear page</a>
+    <a href="" id="link1" style="display:none">Reload page</a>
+    Share:<input type="url" id="link2" readonly>
 
     <table>
         <tr>
@@ -41,8 +42,8 @@
                                                                         echo ("value='" . $_GET["svb"] . "'");
                                                                     } ?>>
                 <input type="submit" onclick="run();">
-                <br><br>
-                Share: <input id="link2" readonly>
+                <br>
+
             </td>
             <td>Number per Path Segment=<input type="number" id="numPointsPathSegment" min="10" <?php if ($_GET["npps"]) {
                                                                                                     echo ("value='" . $_GET["npps"] . "'");
@@ -61,6 +62,9 @@
         <path id="new"></path>
         <path id="dummy"></path>
     </svg>
+    Absolute Path d=
+    <textarea id="bottom" readonly></textarea>
+
 </body>
 
 </html>

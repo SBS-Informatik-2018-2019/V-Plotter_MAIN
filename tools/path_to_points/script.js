@@ -8,23 +8,30 @@ function run() {
     // list to path
     var mytextareapathold = document.getElementById("mytextareapathold");
     document.getElementById("mypath").setAttribute("d", mytextareapathold.value);
+    // convert to absolute
+    convertToAbsolute();
+   
     //create shareable link
     var link1 = document.getElementById("link1");
     var link2 = document.getElementById("link2");
-    var link = "https://redtechde.tk/pathcreator/?svb=" + svgviewbox + "&npp=" + numPointsPolyline + "&npps=" + numPointsPathSegment + "&d=" + encodeURI(mytextareapathold.value.replace("  ", " ").replace("\n", ""));
+    var link = "https://redtechde.tk/pathcreator/?svb=" + svgviewbox + "&npp=" + numPointsPolyline + "&npps=" + numPointsPathSegment + "&d=" + encodeURI(document.querySelector("#bottom").innerHTML);
     link1.setAttribute("href", link);
     link1.setAttribute("style", "display:auto;");
     link2.setAttribute("value", link);
-    convertToAbsolute();
+    
 
 
     // one polyline from the path
     if ((numPointsPolyline > 1) && (numPointsPolyline != null)) {
         convertPolyline(numPointsPolyline);
+    }else{
+        document.getElementById("mypolyline").setAttribute("points","");
     }
     // path only with lines
     if ((numPointsPathSegment > 1) && (numPointsPathSegment != null)) {
         convertPath(numPointsPathSegment);
+    }else{
+        document.getElementById("new").setAttribute("d","");
     }
 }
 
@@ -42,7 +49,7 @@ function convertPolyline(numPointsPolyline) {
     var mypolyline = document.getElementById("mypolyline");
     mypolyline.setAttribute("points", polinePoints.join(" "));
     polinePoints.unshift("<svg xmlns='http://www.w3.org/2000/svg'><polyline points='\n");
-    polinePoints.push("' /></svg>");
+    polinePoints.push("' fill='none' stroke='black'/></svg>");
     var mytextareapolyline = document.getElementById("mytextareapolyline");
     mytextareapolyline.innerHTML = polinePoints.join(" ");
 
@@ -80,7 +87,7 @@ function convertPath(numPointsPathSegment) {
 
     newpath.unshift("<svg xmlns='http://www.w3.org/2000/svg'><path d='")
     var mytextareapathnew = document.getElementById("mytextareapathnew");
-    newpath.push("' /></svg>")
+    newpath.push("' fill='none' stroke='black'/></svg>")
     mytextareapathnew.innerHTML = newpath.join(" ");
 }
 
@@ -90,5 +97,6 @@ function convertToAbsolute() {
     var path_string_rel = Raphael.pathToRelative(path_string);
 
     var path_string_abs = Raphael._pathToAbsolute(path_string_rel);
-    document.querySelector("#mypath").setAttribute("d", path_string_abs)
+    document.querySelector("#mypath").setAttribute("d", path_string_abs);
+    document.querySelector("#bottom").innerHTML= path_string_abs;
 }

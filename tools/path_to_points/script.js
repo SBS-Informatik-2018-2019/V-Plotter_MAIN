@@ -39,7 +39,7 @@ function run() {
     // path only with lines
     var mypath = document.getElementById("mypath");
     var pathdata = mypath.getAttribute("d");
-    pathdata = pathdata.replace("m", "M");
+    //pathdata = pathdata.replace("m", "M");
     var paths = [];
     paths = pathdata.split("M");
     var newpath = [];

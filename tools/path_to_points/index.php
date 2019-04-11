@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <script src="raphael.min.js"></script>
     <script src="script.js"></script>
     <h1>V-Plotter Pathcreator</h1>
     <a href="choose.php">Templates</a>

@@ -14,7 +14,10 @@
     <script src="raphael.min.js"></script>
     <script src="script.js"></script>
     <h1>V-Plotter Pathcreator</h1>
+    <a href="choose.php">Templates</a>
+    <a href="index.php?clear">Clear page</a>
     <a href="" id="link1" style="display:none">Reload page</a>
+    Share:<input type="url" id="link2" readonly>
 
     <table>
         <tr>
@@ -24,19 +27,21 @@
         </tr>
         <tr>
             <td><textarea id="mytextareapolyline" readonly></textarea></td>
-            <td><textarea id="mytextareapathold"></textarea></td>
+            <td><textarea id="mytextareapathold"><?php if ($_GET["d"]) {
+                                                        echo (urldecode($_GET["d"]));
+                                                    } ?></textarea></td>
             <td><textarea id="mytextareapathnew" readonly></textarea></td>
         </tr>
         <tr>
-            <td>Number of Polylinepoints=<input type="number" id="numPointsPolyline" min="10">
+            <td>Number of Polylinepoints=<input type="number" id="numPointsPolyline" min="10" >
             </td>
             <td>
-                Viewbox-Size=<input type="number" id="svgviewBox">
+                Viewbox-Size=<input type="number" id="svgviewBox" >
                 <input type="submit" onclick="run();">
-                <br><br>
-                Share: <input id="link2" readonly>
+                <br>
+
             </td>
-            <td>Number per Path Segment=<input type="number" id="numPointsPathSegment" min="10">
+            <td>Number per Path Segment=<input type="number" id="numPointsPathSegment" min="10" >
             </td>
         </tr>
         <tr>
@@ -51,6 +56,9 @@
         <path id="new"></path>
         <path id="dummy"></path>
     </svg>
+    Absolute Path d=
+    <textarea id="bottom" readonly></textarea>
+
 </body>
 
 </html>

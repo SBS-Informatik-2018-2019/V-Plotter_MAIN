@@ -10,7 +10,7 @@ function run() {
     document.getElementById("mypath").setAttribute("d", mytextareapathold.value);
     // convert to absolute
     convertToAbsolute();
-   
+
     //create shareable link
     var link1 = document.getElementById("link1");
     var link2 = document.getElementById("link2");
@@ -18,20 +18,20 @@ function run() {
     link1.setAttribute("href", link);
     link1.setAttribute("style", "display:auto;");
     link2.setAttribute("value", link);
-    
+
 
 
     // one polyline from the path
     if ((numPointsPolyline > 1) && (numPointsPolyline != null)) {
         convertPolyline(numPointsPolyline);
-    }else{
-        document.getElementById("mypolyline").setAttribute("points","");
+    } else {
+        document.getElementById("mypolyline").setAttribute("points", "");
     }
     // path only with lines
     if ((numPointsPathSegment > 1) && (numPointsPathSegment != null)) {
         convertPath(numPointsPathSegment);
-    }else{
-        document.getElementById("new").setAttribute("d","");
+    } else {
+        document.getElementById("new").setAttribute("d", "");
     }
 }
 
@@ -39,6 +39,8 @@ function convertPolyline(numPointsPolyline) {
     var mypath = document.getElementById("mypath");
     var pathLength = mypath.getTotalLength();
     var polinePoints = [];
+
+
     for (var i = 0; i < numPointsPolyline + 1; i++) {
         var p = mypath.getPointAtLength(i * pathLength / numPointsPolyline);
         polinePoints.push(p.x);
@@ -73,11 +75,19 @@ function convertPath(numPointsPathSegment) {
         newpath.push(p.y);
         newpath.push("\n");
         newpath.push("L");
+        var pevX = -1;
+        var pevY = -1;
         for (var i = 1; i < numPointsPathSegment + 1; i++) {
             var p = pathdummy.getPointAtLength(i * pathDummyLength / numPointsPathSegment);
-            newpath.push(p.x + ",");
-            newpath.push(p.y);
-            newpath.push("\n");
+            if ((pevX == p.x) && (pevY == p.y)) {
+
+            } else {
+                newpath.push(p.x + ",");
+                newpath.push(p.y);
+                newpath.push("\n");
+            }
+            pevX = p.x;
+            pevY = p.y;
         }
 
     }
@@ -98,5 +108,5 @@ function convertToAbsolute() {
 
     var path_string_abs = Raphael._pathToAbsolute(path_string_rel);
     document.querySelector("#mypath").setAttribute("d", path_string_abs);
-    document.querySelector("#bottom").innerHTML= path_string_abs;
+    document.querySelector("#bottom").innerHTML = path_string_abs;
 }

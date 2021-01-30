@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="border: 8px solid powderblue;margin: 50px;" width="2030" height="2200">	
+	<circle cx="0" cy="0" r="35" stroke="black" stroke-width="4" fill="grey" />
+	<circle cx="2030" cy="0" r="35" stroke="black" stroke-width="4" fill="grey" />
+	<text x="100" y="100" style="font-size: 70;stroke: black;">Informatik LK Q4</text>
+	<text x="190" y="150" style="font-size: 50;stroke: black;">Schuldorf Bergstraße</text>
+	<text x="800" y="200" style="font-size: 100;stroke: black;">V-Plotter</text>
+	<rect x="800" y="800" width="430" height="304" stroke="black" stroke-dasharray="20,10,5,5,5,10" stroke-width="3" fill="white"/>
+	<line x1="0" y1="0" x2="820" y2="820" stroke="grey" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,5"></line>
+	<line x1="2030" y1="0" x2="820" y2="820" stroke="grey" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,5"></line>
+	<polyline points="820,820 1100,820 1200,920 1100,1020 1100,820 820,1020 100,1020 820,820 820,1020" stroke="green" stroke-width="6" fill="none"/>
+	<path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
+</svg>
